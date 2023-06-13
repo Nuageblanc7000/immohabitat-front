@@ -1,0 +1,65 @@
+<section class="">
+  <div class="home_hero">
+    <h1>immohabitat</h1>
+  </div>
+
+  <section class="container">
+    <div class="search_container">
+      <span class="search_title">Rechercher le bien de vos rêves</span>
+      <form
+        [formGroup]="searchForm"
+        class="search_form"
+        (ngSubmit)="onSearchSubmit()"
+      >
+        <div class="search_city_container">
+          <p-autoComplete
+            class="search_input custom-autocomplete"
+            [(ngModel)]="selected"
+            [suggestions]="filteredCities"
+            (completeMethod)="filterCity($event)"
+            formControlName="city"
+            placeholder="Entrer la ville de votre choix"
+          ></p-autoComplete>
+        </div>
+        <div class="container_search_price">
+          <div class="number_search">
+            <label for="minmax">MINIMUM</label>
+            <p-inputNumber
+              mode="decimal"
+              inputId="minimum"
+              formControlName="minPrice"
+              placeholder="prix minimum"
+            >
+            </p-inputNumber>
+          </div>
+          <div class="number_search">
+            <label for="minmax">MAXIMUM</label>
+            <p-inputNumber
+              mode="decimal"
+              inputId="maximum"
+              [useGrouping]="true"
+              formControlName="maxPrice"
+              placeholder="prix maximum"
+            >
+            </p-inputNumber>
+          </div>
+        </div>
+        <div class="search_type">
+          <p-dropdown
+            formControlName="type"
+            [options]="types"
+            placeholder="Type de bien"
+          ></p-dropdown>
+        </div>
+        <div class="search_btn_container">
+          <button
+            pButton
+            pRipple
+            label="Rechercher"
+            class="p-button-success"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</section>

@@ -1,0 +1,27 @@
+//searchform
+.search_container {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+  min-height: 400px;
+  background-color: #f0f0f0;
+  padding: 10px 30px;
+  border-radius: 10px;
+  .search_title {
+    font-size: 10px;
+    font-weight: 400;
+    color: #3b82f6;
+  }
+
+  .search_city_container {
+    margin: 10px 0;
+  }
+}
+
+.number_search {
+  label {
+    font-weight: bold;
+    padding: 5px 0px;
+    display: block;
+  }
+}
