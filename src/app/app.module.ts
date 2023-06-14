@@ -11,8 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { HeroComponent } from './components/home/component/hero.component';
+import { CarouselModule } from 'primeng/carousel';
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, HeroComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +26,7 @@ import { ButtonModule } from 'primeng/button';
     InputNumberModule,
     DropdownModule,
     ButtonModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

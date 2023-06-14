@@ -1,65 +1,123 @@
 <section class="">
-  <div class="home_hero">
-    <h1>immohabitat</h1>
-  </div>
+  <app-hero></app-hero>
 
   <section class="container">
-    <div class="search_container">
-      <span class="search_title">Rechercher le bien de vos rêves</span>
-      <form
-        [formGroup]="searchForm"
-        class="search_form"
-        (ngSubmit)="onSearchSubmit()"
-      >
-        <div class="search_city_container">
-          <p-autoComplete
-            class="search_input custom-autocomplete"
-            [(ngModel)]="selected"
-            [suggestions]="filteredCities"
-            (completeMethod)="filterCity($event)"
-            formControlName="city"
-            placeholder="Entrer la ville de votre choix"
-          ></p-autoComplete>
-        </div>
-        <div class="container_search_price">
-          <div class="number_search">
-            <label for="minmax">MINIMUM</label>
-            <p-inputNumber
-              mode="decimal"
-              inputId="minimum"
-              formControlName="minPrice"
-              placeholder="prix minimum"
-            >
-            </p-inputNumber>
+    <div class="container_main_search">
+      <div class="search_container">
+        <span class="search_title">Rechercher le bien de vos rêves</span>
+        <form
+          [formGroup]="searchForm"
+          class="search_form"
+          (ngSubmit)="onSearchSubmit()"
+        >
+          <div class="search_city_container">
+            <p-autoComplete
+              class="search_input custom-autocomplete"
+              [(ngModel)]="selected"
+              [suggestions]="filteredCities"
+              (completeMethod)="filterCity($event)"
+              formControlName="city"
+              placeholder="Entrer la ville de votre choix"
+            ></p-autoComplete>
           </div>
-          <div class="number_search">
-            <label for="minmax">MAXIMUM</label>
-            <p-inputNumber
-              mode="decimal"
-              inputId="maximum"
-              [useGrouping]="true"
-              formControlName="maxPrice"
-              placeholder="prix maximum"
-            >
-            </p-inputNumber>
+          <div class="container_search_price">
+            <div class="number_search">
+              <label for="minmax">MINIMUM</label>
+              <p-inputNumber
+                mode="decimal"
+                inputId="minimum"
+                formControlName="minPrice"
+                placeholder="prix minimum"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="number_search">
+              <label for="minmax">MAXIMUM</label>
+              <p-inputNumber
+                mode="decimal"
+                inputId="maximum"
+                [useGrouping]="true"
+                formControlName="maxPrice"
+                placeholder="prix maximum"
+              >
+              </p-inputNumber>
+            </div>
           </div>
-        </div>
-        <div class="search_type">
-          <p-dropdown
-            formControlName="type"
-            [options]="types"
-            placeholder="Type de bien"
-          ></p-dropdown>
-        </div>
-        <div class="search_btn_container">
-          <button
-            pButton
-            pRipple
-            label="Rechercher"
-            class="p-button-success"
-          ></button>
-        </div>
-      </form>
+          <div class="search_type">
+            <p-dropdown
+              formControlName="type"
+              [options]="types"
+              placeholder="Type de bien"
+            ></p-dropdown>
+          </div>
+          <div class="search_btn_container">
+            <button
+              pButton
+              pRipple
+              label="Rechercher"
+              class="p-button-success"
+            ></button>
+          </div>
+        </form>
+      </div>
     </div>
+
+    <section class="properties_container">
+      <h2>Biens à la une</h2>
+
+      <p-carousel [value]="newProperties" [numVisible]="3" [numScroll]="1">
+        <ng-template let-property pTemplate="item">
+          <div class="property_card">
+            <picture
+              [ngStyle]="{
+                'background-image': 'url(' + property.images[0].path + ')'
+              }"
+            >
+            </picture>
+            <div class="property_card_context">
+              <span class="property_card_type">
+                {{ property.type.title }}
+              </span>
+              <span class="property_card_price"
+                >{{ property.price | currency : "EUR" : "symbol" : "1.0-2" }}
+              </span>
+              <span>
+                {{ property.location.city.code }}
+                {{ property.location.city.localite }}
+              </span>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </section>
+    <section class="info_home">
+      <article class="info_home_article">
+        <div class="info_home_article_context">
+          <h3>Immohabitat votre partenaire immobilier</h3>
+          <p>
+            <span></span>Immohabitat s'assure que tous ces biens sont conformes
+          </p>
+          <p>
+            <span></span>
+            Nous vous proposons de vous accompagner dans vos vites afin de
+            trouver le bien de vos rêves ensembles
+          </p>
+        </div>
+        <picture class="info_home_article_picture">
+          <img
+            src="../../../assets/images/pub_satisfaction.svg"
+            alt="satisfaction"
+          />
+        </picture>
+      </article>
+    </section>
+    <section class="property_by_city_container">
+      <h2>Biens disponibles dans ces villes</h2>
+      <div class="property_by_city_container_grid">
+        <div class="mini_card_city" *ngFor="let city of citiesSearch">
+          {{ city.localite }}
+        </div>
+      </div>
+    </section>
   </section>
 </section>

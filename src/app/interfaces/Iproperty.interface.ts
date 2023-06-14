@@ -23,10 +23,23 @@ export interface Iproperty {
   courtyard: boolean;
   commonOutdoorSpaces: boolean;
   location: location;
+  images?: images;
+  type: type;
 }
 
 interface location {
   id: number;
   street: string;
   city: Icity;
+}
+interface images {
+  id: number;
+  path: string;
+  tempo: boolean;
+}
+
+interface type {
+  id: number;
+  title: string;
+  description: string;
 }
