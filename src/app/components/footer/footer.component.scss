@@ -1,0 +1,28 @@
+.footer_main {
+  display: flex;
+
+  min-height: 80px;
+  background-color: white;
+  .footer_info {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+  }
+}
+.footer_background {
+  picture {
+    pointer-events: none;
+    user-select: none;
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    img {
+      max-height: 100%;
+    }
+  }
+}
