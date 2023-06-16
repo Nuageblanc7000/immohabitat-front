@@ -13,8 +13,25 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { HeroComponent } from './components/home/component/hero.component';
 import { CarouselModule } from 'primeng/carousel';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PropertyComponent } from './page/property/property.component';
+import { NavComponent } from './components/nav/nav.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { MenuPhoneComponent } from './components/menu-phone/menu-phone.component';
+
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeroComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeroComponent,
+    HeaderComponent,
+    FooterComponent,
+    PropertyComponent,
+    NavComponent,
+    LoaderComponent,
+    MenuPhoneComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

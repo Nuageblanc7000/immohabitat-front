@@ -1,0 +1,5 @@
+<p *ngIf="isLoading; else content">en chargement</p>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

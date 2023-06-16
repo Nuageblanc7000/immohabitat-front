@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounce, filter, mergeMap, switchMap, timer } from 'rxjs';
 import { Icity } from 'src/app/interfaces/ICity.interface';
 import { Iproperty } from 'src/app/interfaces/Iproperty.interface';
-import { ICitySearch } from 'src/app/interfaces/SearchCity.interface';
 import { CityService } from 'src/app/services/city.service';
 import { PropertyService } from 'src/app/services/property.service';
 
@@ -12,6 +12,7 @@ import { PropertyService } from 'src/app/services/property.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  isLoading: boolean = false;
   cities: Icity[] = [];
   citiesSearch: Icity[] = [];
   filteredCities: any[] = [];
@@ -33,9 +34,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       maxPrice: [''],
       type: [''],
     });
+    this.isLoading = true;
     this._propertyService.getAllNewProperties().subscribe({
       next: (data: any) => {
         this.newProperties = data.data.properties;
+        // setTimeout(() => {
+        //   this.isLoading = false;
+        // }, 2000);
+        this.isLoading = false;
       },
     });
     this._propertyService.getAllCitiesByProperties().subscribe({
@@ -43,6 +49,20 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.citiesSearch = data.data;
       },
     });
+
+    this.searchForm
+      .get('city')
+      ?.valueChanges.pipe(
+        debounce((_) => timer(1000)),
+        filter((v) => !!v),
+        switchMap((v) => this._cityService.getAllCities(v))
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data.data.cities);
+          this.filteredCities = data.data.cities.map((p: Icity) => p.localite);
+        },
+      });
   }
   ngOnDestroy() {
     clearInterval(this.timeout);
@@ -54,22 +74,5 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log(data);
       },
     });
-  }
-
-  filterCity(event: { query: ICitySearch }) {
-    let query: ICitySearch = event.query;
-    if (query) {
-      clearInterval(this.timeout);
-      this.timeout = setTimeout(() => {
-        this._cityService.getAllCities(query).subscribe({
-          next: (data: any) => {
-            console.log(data.data.cities);
-            this.filteredCities = data.data.cities.map(
-              (p: Icity) => p.localite
-            );
-          },
-        });
-      }, 1000);
-    }
   }
 }

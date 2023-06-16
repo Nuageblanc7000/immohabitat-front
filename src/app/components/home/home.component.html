@@ -15,7 +15,6 @@
               class="search_input custom-autocomplete"
               [(ngModel)]="selected"
               [suggestions]="filteredCities"
-              (completeMethod)="filterCity($event)"
               formControlName="city"
               placeholder="Entrer la ville de votre choix"
             ></p-autoComplete>
@@ -61,63 +60,65 @@
         </form>
       </div>
     </div>
+    <app-loader [isLoading]="isLoading">
+      <section class="properties_container">
+        <h2>Biens à la une</h2>
 
-    <section class="properties_container">
-      <h2>Biens à la une</h2>
-
-      <p-carousel [value]="newProperties" [numVisible]="3" [numScroll]="1">
-        <ng-template let-property pTemplate="item">
-          <div class="property_card">
-            <picture
-              [ngStyle]="{
-                'background-image': 'url(' + property.images[0].path + ')'
-              }"
-            >
-            </picture>
-            <div class="property_card_context">
-              <span class="property_card_type">
-                {{ property.type.title }}
-              </span>
-              <span class="property_card_price"
-                >{{ property.price | currency : "EUR" : "symbol" : "1.0-2" }}
-              </span>
-              <span>
-                {{ property.location.city.code }}
-                {{ property.location.city.localite }}
-              </span>
+        <p-carousel [value]="newProperties" [numVisible]="3" [numScroll]="1">
+          <ng-template let-property pTemplate="item">
+            <div class="property_card">
+              <picture
+                [ngStyle]="{
+                  'background-image': 'url(' + property.images[0].path + ')'
+                }"
+              >
+              </picture>
+              <div class="property_card_context">
+                <span class="property_card_type">
+                  {{ property.type.title }}
+                </span>
+                <span class="property_card_price"
+                  >{{ property.price | currency : "EUR" : "symbol" : "1.0-2" }}
+                </span>
+                <span>
+                  {{ property.location.city.code }}
+                  {{ property.location.city.localite }}
+                </span>
+              </div>
             </div>
+          </ng-template>
+        </p-carousel>
+      </section>
+      <section class="info_home">
+        <article class="info_home_article">
+          <div class="info_home_article_context">
+            <h3>Immohabitat votre partenaire immobilier</h3>
+            <p>
+              <span></span>Immohabitat s'assure que tous ces biens sont
+              conformes
+            </p>
+            <p>
+              <span></span>
+              Nous vous proposons de vous accompagner dans vos vites afin de
+              trouver le bien de vos rêves ensembles
+            </p>
           </div>
-        </ng-template>
-      </p-carousel>
-    </section>
-    <section class="info_home">
-      <article class="info_home_article">
-        <div class="info_home_article_context">
-          <h3>Immohabitat votre partenaire immobilier</h3>
-          <p>
-            <span></span>Immohabitat s'assure que tous ces biens sont conformes
-          </p>
-          <p>
-            <span></span>
-            Nous vous proposons de vous accompagner dans vos vites afin de
-            trouver le bien de vos rêves ensembles
-          </p>
+          <picture class="info_home_article_picture">
+            <img
+              src="../../../assets/images/pub_satisfaction.svg"
+              alt="satisfaction"
+            />
+          </picture>
+        </article>
+      </section>
+      <section class="property_by_city_container">
+        <h2>Biens disponibles dans ces villes</h2>
+        <div class="property_by_city_container_grid">
+          <div class="mini_card_city" *ngFor="let city of citiesSearch">
+            {{ city.localite }}
+          </div>
         </div>
-        <picture class="info_home_article_picture">
-          <img
-            src="../../../assets/images/pub_satisfaction.svg"
-            alt="satisfaction"
-          />
-        </picture>
-      </article>
-    </section>
-    <section class="property_by_city_container">
-      <h2>Biens disponibles dans ces villes</h2>
-      <div class="property_by_city_container_grid">
-        <div class="mini_card_city" *ngFor="let city of citiesSearch">
-          {{ city.localite }}
-        </div>
-      </div>
-    </section>
+      </section>
+    </app-loader>
   </section>
 </section>

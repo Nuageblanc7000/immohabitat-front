@@ -1,0 +1,10 @@
+<header class="header_main">
+  <div class="container container_header_main">
+    <picture class="header_logo">
+      <img src="../../../assets/images/logo.svg" alt="logo immohabitat" />
+    </picture>
+
+    <app-nav (isOpen)="isOpen($event)"></app-nav>
+  </div>
+</header>
+<app-menu-phone (isOpen)="(isOpened)" *ngIf="isOpened"></app-menu-phone>

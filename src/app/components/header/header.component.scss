@@ -1,0 +1,19 @@
+.header_main {
+  position: sticky;
+  top: 0;
+  background-color: #fffefe;
+  .container_header_main {
+    display: flex;
+    height: 80px;
+    .container_header_main {
+      padding: 1rem 0.5rem;
+    }
+    .header_logo {
+      flex-grow: 1;
+      display: flex;
+      img {
+        max-width: 140px;
+      }
+    }
+  }
+}

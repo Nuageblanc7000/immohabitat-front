@@ -5,6 +5,46 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
+$body-color: #f3f2f2;
+$white-intense: #fffefe;
+$shadow-box: 4px 6px 4px rgba(0, 0, 0, 0.17);
+$medium-green: #22c55e;
+$blue: #3b82f6;
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+}
+
 body {
   font-family: var(--font-family);
+  background-color: $body-color;
+}
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex-grow: 1;
+  padding-top: 80px;
+}
+
+//style nav component
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+app-nav {
+  flex-grow: 1;
+  @media (max-width: 768px) {
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
