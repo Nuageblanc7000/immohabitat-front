@@ -64,7 +64,12 @@
       <section class="properties_container">
         <h2>Biens à la une</h2>
 
-        <p-carousel [value]="newProperties" [numVisible]="3" [numScroll]="1">
+        <p-carousel
+          [value]="newProperties"
+          [responsiveOptions]="responsiveOptions"
+          [numVisible]="3"
+          [numScroll]="1"
+        >
           <ng-template let-property pTemplate="item">
             <div class="property_card">
               <picture

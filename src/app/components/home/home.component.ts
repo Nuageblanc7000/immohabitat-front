@@ -20,12 +20,31 @@ export class HomeComponent implements OnInit, OnDestroy {
   selected: string = '';
   types: any[] = ['Maison', 'Appartement'];
   newProperties: Iproperty[] = [];
+  responsiveOptions: any[] = [];
   private timeout: any = undefined;
   constructor(
     private _propertyService: PropertyService,
     private _cityService: CityService,
     private _fb: FormBuilder
-  ) {}
+  ) {
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 2,
+        numScroll: 3,
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 2,
+        numScroll: 2,
+      },
+      {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+    ];
+  }
 
   ngOnInit(): void {
     this.searchForm = this._fb.group({
@@ -38,9 +57,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._propertyService.getAllNewProperties().subscribe({
       next: (data: any) => {
         this.newProperties = data.data.properties;
-        // setTimeout(() => {
-        //   this.isLoading = false;
-        // }, 2000);
         this.isLoading = false;
       },
     });

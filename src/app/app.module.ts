@@ -19,6 +19,8 @@ import { PropertyComponent } from './page/property/property.component';
 import { NavComponent } from './components/nav/nav.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MenuPhoneComponent } from './components/menu-phone/menu-phone.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { FavorisComponent } from './components/favoris/favoris.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { MenuPhoneComponent } from './components/menu-phone/menu-phone.component
     NavComponent,
     LoaderComponent,
     MenuPhoneComponent,
+    FavorisComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { MenuPhoneComponent } from './components/menu-phone/menu-phone.component
     DropdownModule,
     ButtonModule,
     CarouselModule,
+    GalleriaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -32,7 +32,9 @@ export class PropertyService extends globalService {
       `${this.url_base_property}?${queryString}`
     );
   }
-  getById() {}
+  getById(id: string | null) {
+    return this._Http.get<Iproperty>(` ${this.url_base_property}/${id}`);
+  }
 
   getAllCitiesByProperties(): Observable<Icity[]> {
     return this._Http.get<Icity[]>(`${this.url_base_property}/cities`);

@@ -1,1 +1,54 @@
-<p>property works!</p>
+<section class="property_container">
+  <div class="hero_property_container">
+    <div class="container hero_property">
+      <div class="container_hero_info">
+        <span>Type de bien: {{ property.type.title }}</span>
+        <span
+          >lieu: {{ property.location.city.code }},
+          {{ property.location.city.localite }}
+        </span>
+      </div>
+      <div class="container_hero_price">
+        <span
+          >{{ property.price | currency : "EUR" : "symbol" : "1.0-2" }}
+        </span>
+      </div>
+
+      <app-favoris class="favoris_property"></app-favoris>
+    </div>
+  </div>
+  <div class="container">
+    <div *ngIf="images" class="gallery_container_m">
+      <div
+        *ngFor="let image of images; let index = index"
+        class="gallery_image_m"
+        key="index"
+      >
+        <img
+          [src]="image.path"
+          [alt]="image.alt"
+          style="cursor: pointer"
+          (click)="imageClick(index)"
+        />
+      </div>
+    </div>
+
+    <p-galleria
+      class="gallery"
+      [value]="images"
+      [(visible)]="displayCustom"
+      [(activeIndex)]="activeIndex"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-width': '900px' }"
+      [numVisible]="2"
+      [circular]="true"
+      [fullScreen]="true"
+      [showItemNavigators]="true"
+      [showThumbnails]="false"
+    >
+      <ng-template class="gallery_img" pTemplate="item" let-item>
+        <img [src]="item.path" style="width: 100%; display: block" />
+      </ng-template>
+    </p-galleria>
+  </div>
+</section>
