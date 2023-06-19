@@ -23,6 +23,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { FavorisComponent } from './components/favoris/favoris.component';
 import { BooleanPipe } from './pipes/boolean.pipe';
 import { AccordionModule } from 'primeng/accordion';
+import { favoriteService } from './services/favorite.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { AccordionModule } from 'primeng/accordion';
     GalleriaModule,
     AccordionModule,
   ],
-  providers: [],
+  providers: [favoriteService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
