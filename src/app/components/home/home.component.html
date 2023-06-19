@@ -71,26 +71,33 @@
           [numScroll]="1"
         >
           <ng-template let-property pTemplate="item">
-            <div class="property_card">
-              <picture
-                [ngStyle]="{
-                  'background-image': 'url(' + property.images[0].path + ')'
-                }"
-              >
-              </picture>
-              <div class="property_card_context">
-                <span class="property_card_type">
-                  {{ property.type.title }}
-                </span>
-                <span class="property_card_price"
-                  >{{ property.price | currency : "EUR" : "symbol" : "1.0-2" }}
-                </span>
-                <span>
-                  {{ property.location.city.code }}
-                  {{ property.location.city.localite }}
-                </span>
+            <a
+              class="property_new_link"
+              [routerLink]="['/property', property.id]"
+            >
+              <div class="property_card">
+                <picture
+                  [ngStyle]="{
+                    'background-image': 'url(' + property.images[0].path + ')'
+                  }"
+                >
+                </picture>
+                <div class="property_card_context">
+                  <span class="property_card_type">
+                    {{ property.type.title }}
+                  </span>
+                  <span class="property_card_price"
+                    >{{
+                      property.price | currency : "EUR" : "symbol" : "1.0-2"
+                    }}
+                  </span>
+                  <span>
+                    {{ property.location.city.code }}
+                    {{ property.location.city.localite }}
+                  </span>
+                </div>
               </div>
-            </div>
+            </a>
           </ng-template>
         </p-carousel>
       </section>

@@ -11,8 +11,11 @@
     .header_logo {
       flex-grow: 1;
       display: flex;
-      img {
-        max-width: 140px;
+      a {
+        display: flex;
+        img {
+          max-width: 140px;
+        }
       }
     }
   }

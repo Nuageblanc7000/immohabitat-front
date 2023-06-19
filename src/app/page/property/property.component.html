@@ -18,37 +18,145 @@
     </div>
   </div>
   <div class="container">
-    <div *ngIf="images" class="gallery_container_m">
-      <div
-        *ngFor="let image of images; let index = index"
-        class="gallery_image_m"
-        key="index"
-      >
-        <img
-          [src]="image.path"
-          [alt]="image.alt"
-          style="cursor: pointer"
-          (click)="imageClick(index)"
-        />
+    <div class="container_slider_property">
+      <div *ngIf="images" class="gallery_container_m">
+        <div
+          *ngFor="let image of images; let index = index"
+          class="gallery_image_m"
+          key="index"
+        >
+          <img
+            [src]="image.path"
+            [alt]="image.alt"
+            style="cursor: pointer"
+            (click)="imageClick(index)"
+          />
+        </div>
       </div>
-    </div>
 
-    <p-galleria
-      class="gallery"
-      [value]="images"
-      [(visible)]="displayCustom"
-      [(activeIndex)]="activeIndex"
-      [responsiveOptions]="responsiveOptions"
-      [containerStyle]="{ 'max-width': '900px' }"
-      [numVisible]="2"
-      [circular]="true"
-      [fullScreen]="true"
-      [showItemNavigators]="true"
-      [showThumbnails]="false"
-    >
-      <ng-template class="gallery_img" pTemplate="item" let-item>
-        <img [src]="item.path" style="width: 100%; display: block" />
-      </ng-template>
-    </p-galleria>
+      <p-galleria
+        class="gallery"
+        [value]="images"
+        [(visible)]="displayCustom"
+        [(activeIndex)]="activeIndex"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '900px' }"
+        [numVisible]="2"
+        [circular]="true"
+        [fullScreen]="true"
+        [showItemNavigators]="true"
+        [showThumbnails]="false"
+      >
+        <ng-template class="gallery_img" pTemplate="item" let-item>
+          <img [src]="item.path" style="width: 100%; display: block" />
+        </ng-template>
+      </p-galleria>
+    </div>
   </div>
+
+  <section class="info_property_container container">
+    <article class="info_property_description">
+      <h2>Description</h2>
+      <h3>{{ property.title }}</h3>
+
+      <p>
+        {{ property.description }}
+      </p>
+    </article>
+    <article class="info_property_interior">
+      <h2>Intérieur</h2>
+      <div>
+        <span class="title_property_span_title">Etages:</span>
+        <span class="title_property_span_response"> {{ property.floor }} </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">Pièces:</span>
+        <span class="title_property_span_response">{{ property.room }} </span>
+      </div>
+
+      <div>
+        <span class="title_property_span_title">Chambres:</span>
+        <span class="title_property_span_response"
+          >{{ property.bedrooms }}
+        </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">Salles de bains:</span>
+        <span class="title_property_span_response"
+          >{{ property.bathrooms }}
+        </span>
+      </div>
+
+      <div>
+        <span class="title_property_span_title"> salon:</span>
+        <span class="title_property_span_response"
+          >{{ property.livingRoom | boolean }}
+        </span>
+      </div>
+
+      <div>
+        <span class="title_property_span_title"> Salle à manger:</span>
+        <span class="title_property_span_response"
+          >{{ property.diningRoom | boolean }}
+        </span>
+      </div>
+
+      <div>
+        <span class="title_property_span_title"> type de cuisine:</span>
+        <span class="title_property_span_response"
+          >{{ property.kitchenType }}
+        </span>
+      </div>
+
+      <div>
+        <span class="title_property_span_title"> Balcon:</span>
+        <span class="title_property_span_response"
+          >{{ property.balcony | boolean }}
+        </span>
+      </div>
+
+      <!-- {{ property | json }} -->
+    </article>
+
+    <article class="info_property_exterior">
+      <h2>Extérieur</h2>
+      <div>
+        <span class="title_property_span_title">Piscine:</span>
+        <span class="title_property_span_response"
+          >{{ property.pool | boolean }}
+        </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">Terrasse:</span>
+        <span class="title_property_span_response"
+          >{{ property.terrace | boolean }}
+        </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">Parking:</span>
+        <span class="title_property_span_response"
+          >{{ property.parking | boolean }}
+        </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">Garage:</span>
+        <span class="title_property_span_response"
+          >{{ property.garage | boolean }}
+        </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">salon:</span>
+        <span class="title_property_span_response"
+          >{{ property.livingRoom | boolean }}
+        </span>
+      </div>
+      <div>
+        <span class="title_property_span_title">jardin/cour:</span>
+        <span class="title_property_span_response"
+          >{{ property.courtyard | boolean }}
+        </span>
+      </div>
+      <!-- {{ property | json }} -->
+    </article>
+  </section>
 </section>

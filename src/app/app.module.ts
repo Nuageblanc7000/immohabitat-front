@@ -21,6 +21,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MenuPhoneComponent } from './components/menu-phone/menu-phone.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { FavorisComponent } from './components/favoris/favoris.component';
+import { BooleanPipe } from './pipes/boolean.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FavorisComponent } from './components/favoris/favoris.component';
     LoaderComponent,
     MenuPhoneComponent,
     FavorisComponent,
+    BooleanPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,9 @@
 <header class="header_main">
   <div class="container container_header_main">
     <picture class="header_logo">
-      <img src="../../../assets/images/logo.svg" alt="logo immohabitat" />
+      <a [routerLink]="['/']">
+        <img src="../../../assets/images/logo.svg" alt="logo immohabitat" />
+      </a>
     </picture>
 
     <app-nav (isOpen)="isOpen($event)"></app-nav>
