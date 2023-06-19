@@ -9,12 +9,11 @@ import { Iproperty } from 'src/app/interfaces/Iproperty.interface';
 })
 export class PropertyComponent implements OnInit {
   responsiveOptions: any[] = [];
-
   displayCustom: boolean = false;
-
   activeIndex: number = 0;
-
   images: any[] = [];
+  imageFirst!: object;
+  imagesThree: any[] = [];
   valueChange = [];
 
   property!: Iproperty;
@@ -47,6 +46,12 @@ export class PropertyComponent implements OnInit {
       },
     });
   }
+
+  //window print
+  printProperty() {
+    window.print();
+  }
+  //slider
   imageClick(index: number) {
     this.activeIndex = index;
     this.displayCustom = true;

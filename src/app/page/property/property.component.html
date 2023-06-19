@@ -18,22 +18,36 @@
     </div>
   </div>
   <div class="container">
-    <div class="container_slider_property">
-      <div *ngIf="images" class="gallery_container_m">
-        <div
-          *ngFor="let image of images; let index = index"
-          class="gallery_image_m"
-          key="index"
-        >
-          <img
-            [src]="image.path"
-            [alt]="image.alt"
-            style="cursor: pointer"
-            (click)="imageClick(index)"
-          />
+    <div class="container_picture">
+      <div class="picture_central">
+        <div class="picture_central_counter">
+          <span> 1/{{ images.length }} </span>
+          <img src="../../../assets/images/screen.svg" alt="screen + logo" />
         </div>
+        <img
+          [src]="images[0].path"
+          [alt]="property.title"
+          (click)="imageClick(0)"
+        />
       </div>
-
+      <div class="container_thumb">
+        <ng-container *ngFor="let image of images; let index = index">
+          <div *ngIf="index > 0 && index <= 3">
+            <img
+              [src]="image.path"
+              [alt]="property.title"
+              (click)="imageClick(index)"
+            />
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="container action_container_property">
+      <div class="div_action_property">
+        <p (click)="printProperty()">Imprimer la fiche</p>
+      </div>
+    </div>
+    <div class="container_slider_property">
       <p-galleria
         class="gallery"
         [value]="images"
@@ -53,8 +67,7 @@
       </p-galleria>
     </div>
   </div>
-
-  <section class="info_property_container container">
+  <section class="info_property_container container view-on-print">
     <article class="info_property_description">
       <h2>Description</h2>
       <h3>{{ property.title }}</h3>
@@ -114,8 +127,6 @@
           >{{ property.balcony | boolean }}
         </span>
       </div>
-
-      <!-- {{ property | json }} -->
     </article>
 
     <article class="info_property_exterior">
@@ -156,7 +167,148 @@
           >{{ property.courtyard | boolean }}
         </span>
       </div>
-      <!-- {{ property | json }} -->
     </article>
+  </section>
+
+  <section class="info_property_container container hide-on-print">
+    <p-accordion class="w-full" [activeIndex]="0">
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center">
+            <i class="pi pi-calendar mr-2"></i>
+            <span class="vertical-align-middle title_accordeon"
+              >Description</span
+            >
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <h2>{{ property.title }}</h2>
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </ng-template>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center">
+            <i class="pi pi-search mr-2"></i>
+            <span class="vertical-align-middle title_accordeon">Intérieur</span>
+            <i class="pi pi-cog ml-2 ml-2"></i>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <article class="info_property_interior interior_bg">
+            <div>
+              <span class="title_property_span_title">Etages:</span>
+              <span class="title_property_span_response">
+                {{ property.floor }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">Pièces:</span>
+              <span class="title_property_span_response"
+                >{{ property.room }}
+              </span>
+            </div>
+
+            <div>
+              <span class="title_property_span_title">Chambres:</span>
+              <span class="title_property_span_response"
+                >{{ property.bedrooms }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">Salles de bains:</span>
+              <span class="title_property_span_response"
+                >{{ property.bathrooms }}
+              </span>
+            </div>
+
+            <div>
+              <span class="title_property_span_title"> salon:</span>
+              <span class="title_property_span_response"
+                >{{ property.livingRoom | boolean }}
+              </span>
+            </div>
+
+            <div>
+              <span class="title_property_span_title"> Salle à manger:</span>
+              <span class="title_property_span_response"
+                >{{ property.diningRoom | boolean }}
+              </span>
+            </div>
+
+            <div>
+              <span class="title_property_span_title"> type de cuisine:</span>
+              <span class="title_property_span_response"
+                >{{ property.kitchenType }}
+              </span>
+            </div>
+
+            <div>
+              <span class="title_property_span_title"> Balcon:</span>
+              <span class="title_property_span_response"
+                >{{ property.balcony | boolean }}
+              </span>
+            </div>
+          </article>
+        </ng-template>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center">
+            <i class="pi pi-user mr-2"></i>
+            <span class="vertical-align-middle title_accordeon">Extérieur</span>
+            <i class="pi pi-cog ml-2 ml-2"></i>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <article class="info_property_exterior exterior_bg">
+            <div>
+              <span class="title_property_span_title">Piscine:</span>
+              <span class="title_property_span_response"
+                >{{ property.pool | boolean }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">Terrasse:</span>
+              <span class="title_property_span_response"
+                >{{ property.terrace | boolean }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">Parking:</span>
+              <span class="title_property_span_response"
+                >{{ property.parking | boolean }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">Garage:</span>
+              <span class="title_property_span_response"
+                >{{ property.garage | boolean }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">salon:</span>
+              <span class="title_property_span_response"
+                >{{ property.livingRoom | boolean }}
+              </span>
+            </div>
+            <div>
+              <span class="title_property_span_title">jardin/cour:</span>
+              <span class="title_property_span_response"
+                >{{ property.courtyard | boolean }}
+              </span>
+            </div>
+          </article>
+        </ng-template>
+      </p-accordionTab>
+    </p-accordion>
   </section>
 </section>

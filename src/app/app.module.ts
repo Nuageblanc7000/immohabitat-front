@@ -22,6 +22,7 @@ import { MenuPhoneComponent } from './components/menu-phone/menu-phone.component
 import { GalleriaModule } from 'primeng/galleria';
 import { FavorisComponent } from './components/favoris/favoris.component';
 import { BooleanPipe } from './pipes/boolean.pipe';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { BooleanPipe } from './pipes/boolean.pipe';
     ButtonModule,
     CarouselModule,
     GalleriaModule,
+    AccordionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
