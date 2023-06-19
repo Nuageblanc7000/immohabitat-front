@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { debounce, filter, mergeMap, switchMap, timer } from 'rxjs';
+import { Router } from '@angular/router';
+import { debounce, filter, mergeMap, of, switchMap, timer } from 'rxjs';
 import { Icity } from 'src/app/interfaces/ICity.interface';
 import { Iproperty } from 'src/app/interfaces/Iproperty.interface';
 import { CityService } from 'src/app/services/city.service';
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private _propertyService: PropertyService,
     private _cityService: CityService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _router: Router
   ) {
     this.responsiveOptions = [
       {
@@ -69,7 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.searchForm
       .get('city')
       ?.valueChanges.pipe(
-        debounce((_) => timer(1000)),
+        debounce((_) => timer(500)),
         filter((v) => !!v),
         switchMap((v) => this._cityService.getAllCities(v))
       )
@@ -80,15 +82,18 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
       });
   }
-  ngOnDestroy() {
-    clearInterval(this.timeout);
-  }
+  ngOnDestroy() {}
 
   onSearchSubmit() {
-    this._propertyService.getAll(this.searchForm.value).subscribe({
-      next: (data: any) => {
-        console.log(data);
-      },
+    const params = this.searchForm.value;
+    let paramsValid: Record<string, any> = {};
+    for (const key in params) {
+      if (params[key]) {
+        paramsValid[key] = params[key];
+      }
+    }
+    this._router.navigate(['/properties'], {
+      queryParams: { ...paramsValid },
     });
   }
 }

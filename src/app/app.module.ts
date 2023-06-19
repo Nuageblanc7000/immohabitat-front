@@ -23,6 +23,8 @@ import { GalleriaModule } from 'primeng/galleria';
 import { FavorisComponent } from './components/favoris/favoris.component';
 import { BooleanPipe } from './pipes/boolean.pipe';
 import { AccordionModule } from 'primeng/accordion';
+import { PropertiesComponent } from './page/properties/properties.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AccordionModule } from 'primeng/accordion';
     MenuPhoneComponent,
     FavorisComponent,
     BooleanPipe,
+    PropertiesComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

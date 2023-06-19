@@ -71,7 +71,8 @@
           [numScroll]="1"
         >
           <ng-template let-property pTemplate="item">
-            <a
+            <app-card [property]="property"></app-card>
+            <!-- <a
               class="property_new_link"
               [routerLink]="['/property', property.id]"
             >
@@ -97,7 +98,7 @@
                   </span>
                 </div>
               </div>
-            </a>
+            </a> -->
           </ng-template>
         </p-carousel>
       </section>
