@@ -23,6 +23,10 @@ import { GalleriaModule } from 'primeng/galleria';
 import { FavorisComponent } from './components/favoris/favoris.component';
 import { BooleanPipe } from './pipes/boolean.pipe';
 import { AccordionModule } from 'primeng/accordion';
+import { PropertiesComponent } from './page/properties/properties.component';
+import { CardComponent } from './components/card/card.component';
+import { favoriteService } from './services/favorite.service';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,6 @@ import { AccordionModule } from 'primeng/accordion';
     CarouselModule,
     GalleriaModule,
     AccordionModule,
-    DialogModule,
     OverlayPanelModule,
   ],
   providers: [favoriteService],
