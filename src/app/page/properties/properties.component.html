@@ -1,3 +1,69 @@
+<div class="search_bar_container container">
+  <!------------------------form-------------------------->
+  <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+    <div class="container_first_search">
+      <div class="search_city_container">
+        <p-autoComplete
+          formControlName="city"
+          [suggestions]="filteredCities"
+          [(ngModel)]="selected"
+          class="search_input custom-autocomplete"
+          placeholder="Entrer la ville de votre choix"
+        ></p-autoComplete>
+      </div>
+
+      <p-overlayPanel #op>
+        <ng-template pTemplate="content">
+          <div class="container_search_price">
+            <div class="number_search">
+              <label for="minmax">MINIMUM</label>
+              <p-inputNumber
+                mode="decimal"
+                inputId="minimum"
+                formControlName="minPrice"
+                placeholder="prix minimum"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="number_search">
+              <label for="minmax">MAXIMUM</label>
+              <p-inputNumber
+                mode="decimal"
+                inputId="maximum"
+                [useGrouping]="true"
+                formControlName="maxPrice"
+                placeholder="prix maximum"
+              >
+              </p-inputNumber>
+            </div>
+          </div>
+        </ng-template>
+      </p-overlayPanel>
+      <p-button
+        (click)="op.toggle($event)"
+        label="prix"
+        icon="pi pi-euro"
+      ></p-button>
+      <div class="search_type">
+        <p-dropdown
+          formControlName="type"
+          [options]="types"
+          placeholder="Type de bien"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="search_btn_container">
+      <button
+        pButton
+        pRipple
+        label="Rechercher"
+        class="p-button-success"
+      ></button>
+    </div>
+  </form>
+  <!------------------------form-------------------------->
+</div>
+
 <div class="grid_properties_container container">
   <app-card
     *ngFor="let property of properties"

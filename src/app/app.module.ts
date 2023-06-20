@@ -25,7 +25,8 @@ import { BooleanPipe } from './pipes/boolean.pipe';
 import { AccordionModule } from 'primeng/accordion';
 import { PropertiesComponent } from './page/properties/properties.component';
 import { CardComponent } from './components/card/card.component';
-
+import { DialogModule } from 'primeng/dialog';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,8 @@ import { CardComponent } from './components/card/card.component';
     CarouselModule,
     GalleriaModule,
     AccordionModule,
+    DialogModule,
+    OverlayPanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

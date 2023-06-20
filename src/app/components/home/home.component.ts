@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   cities: Icity[] = [];
   citiesSearch: Icity[] = [];
   filteredCities: any[] = [];
-  searchForm!: FormGroup;
   selected: string = '';
+  searchForm!: FormGroup;
   types: any[] = ['Maison', 'Appartement'];
   newProperties: Iproperty[] = [];
   responsiveOptions: any[] = [];
@@ -77,7 +77,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (data: any) => {
-          console.log(data.data.cities);
           this.filteredCities = data.data.cities.map((p: Icity) => p.localite);
         },
       });

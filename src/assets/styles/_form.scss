@@ -14,6 +14,11 @@
   display: flex;
   margin: 10px 0;
   justify-content: space-between;
+  .number_search {
+    display: flex;
+    flex-direction: column;
+    font-weight: bolder;
+  }
   span {
     flex-grow: 1;
     border-radius: 5px;
