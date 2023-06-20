@@ -11,22 +11,26 @@ export class FavorisComponent implements OnInit {
   @Input() maxWidth: number = 80;
   @Input() height: number = 80;
   @Input() propertyId!: number;
+
   isFavorite: boolean = false;
-  isUser: boolean = true;
+  //associer le user bientot
+  isUser: boolean = false;
   listFavoriteUser: any[] = [];
   constructor(private _favoriteService: favoriteService) {}
 
   ngOnInit(): void {
-    this._favoriteService.userFavoriteList().subscribe({
-      next: (data: any) => {
-        this.listFavoriteUser = data.data[0];
-        this.isFavorite = this.listFavoriteUser.some(
-          (p) => p.isFavorite && p.property.id === this.propertyId
-        );
-      },
-    });
+    if (this.isUser) {
+      this._favoriteService.userFavoriteList().subscribe({
+        next: (data: any) => {
+          this.listFavoriteUser = data.data[0];
+          this.isFavorite = this.listFavoriteUser.some(
+            (p) => p.isFavorite && p.property.id === this.propertyId
+          );
+        },
+      });
+    }
   }
-  channgeFavorite() {
+  changeFavorite() {
     if (this.isUser) {
       this.isFavorite = !this.isFavorite;
       this._favoriteService.favoriteToggle(this.propertyId).subscribe({

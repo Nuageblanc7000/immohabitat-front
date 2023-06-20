@@ -10,11 +10,5 @@ import { filter } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'immohabitat';
   constructor(private _router: Router) {}
-  ngOnInit() {
-    this._router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        window.scrollTo(0, 0);
-      });
-  }
+  ngOnInit() {}
 }
