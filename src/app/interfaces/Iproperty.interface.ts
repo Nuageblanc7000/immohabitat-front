@@ -23,7 +23,7 @@ export interface Iproperty {
   courtyard: boolean;
   commonOutdoorSpaces: boolean;
   location: location;
-  images?: images;
+  images: images[];
   type: type;
 }
 

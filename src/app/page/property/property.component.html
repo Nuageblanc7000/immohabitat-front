@@ -23,17 +23,25 @@
   <div class="container">
     <div class="container_picture">
       <div class="picture_central">
-        <div class="picture_central_counter">
+        <div *ngIf="images.length > 0" class="picture_central_counter">
           <span> 1/{{ images.length }} </span>
           <img src="../../../assets/images/screen.svg" alt="screen + logo" />
         </div>
+        <ng-template #notImage>
+          <img
+            src="../../../assets/images/logo.svg"
+            alt="logo"
+            (click)="imageClick(0)"
+          />
+        </ng-template>
         <img
-          [src]="images[0].path"
+          *ngIf="images.length > 0; else notImage"
+          [src]="property.images[0].path"
           [alt]="property.title"
           (click)="imageClick(0)"
         />
       </div>
-      <div class="container_thumb">
+      <div *ngIf="images" class="container_thumb">
         <ng-container *ngFor="let image of images; let index = index">
           <div *ngIf="index > 0 && index <= 3">
             <img

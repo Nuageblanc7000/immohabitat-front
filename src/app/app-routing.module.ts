@@ -5,6 +5,7 @@ import { CityService } from './services/city.service';
 import { PropertyService } from './services/property.service';
 import { PropertyComponent } from './page/property/property.component';
 import { PropertyResolver } from './resolver/property.resolver';
+import { PropertiesComponent } from './page/properties/properties.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,10 @@ const routes: Routes = [
     path: 'property/:id',
     resolve: { data: PropertyResolver },
     component: PropertyComponent,
+  },
+  {
+    path: 'properties',
+    component: PropertiesComponent,
   },
 ];
 

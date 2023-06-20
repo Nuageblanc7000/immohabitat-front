@@ -23,7 +23,6 @@ import { GalleriaModule } from 'primeng/galleria';
 import { FavorisComponent } from './components/favoris/favoris.component';
 import { BooleanPipe } from './pipes/boolean.pipe';
 import { AccordionModule } from 'primeng/accordion';
-import { favoriteService } from './services/favorite.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +37,8 @@ import { favoriteService } from './services/favorite.service';
     MenuPhoneComponent,
     FavorisComponent,
     BooleanPipe,
+    PropertiesComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +54,8 @@ import { favoriteService } from './services/favorite.service';
     CarouselModule,
     GalleriaModule,
     AccordionModule,
+    DialogModule,
+    OverlayPanelModule,
   ],
   providers: [favoriteService],
   bootstrap: [AppComponent],

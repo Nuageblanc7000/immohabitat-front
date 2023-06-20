@@ -15,10 +15,10 @@ export class PropertyService extends globalService {
   private url_base_property = `${this.URL_API}properties`;
 
   getAll(queryParam: any = null): Observable<Iproperty[]> {
+    console.log(queryParam, '---------->findall');
     const queryParams = new URLSearchParams();
 
     for (const key in queryParam) {
-      console.log(queryParam[key]);
       if (queryParam[key]) {
         queryParams.append(key, queryParam[key]);
       }
