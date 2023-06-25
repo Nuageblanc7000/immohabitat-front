@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this._propertyService.getAllCitiesByProperties().subscribe({
       next: (data: any) => {
+        console.log(data);
         this.citiesSearch = data.data;
       },
     });
@@ -78,6 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (data: any) => {
+          console.log(data);
           this.filteredCities = data.data.cities.map((p: Icity) => p.localite);
         },
       });

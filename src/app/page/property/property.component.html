@@ -43,13 +43,12 @@
       </div>
       <div *ngIf="images" class="container_thumb">
         <ng-container *ngFor="let image of images; let index = index">
-          <div *ngIf="index > 0 && index <= 3">
-            <img
-              [src]="image.path"
-              [alt]="property.title"
-              (click)="imageClick(index)"
-            />
-          </div>
+          <div
+            *ngIf="index > 0 && index <= 3"
+            class="property_thumb_image"
+            (click)="imageClick(index)"
+            [ngStyle]="{ 'background-image': 'url(' + image.path + ')' }"
+          ></div>
         </ng-container>
       </div>
     </div>

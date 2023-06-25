@@ -1,0 +1,67 @@
+<div *ngIf="isOpen | async" class="container_main_all">
+  <div class="container_overflow_signin" (click)="closeSignin($event)"></div>
+  <div class="container_main_signin">
+    <button class="close" (click)="closeSignin($event)">x</button>
+
+    <div class="info_signin_container">
+      <div class="info_signin_context">
+        <h3 class="title_signin">Je veux créer un compte</h3>
+      </div>
+      <picture class="info_signin_picture">
+        <img
+          src="../../../assets/images/signup_logo.svg"
+          alt="maison vert avec logo"
+        />
+      </picture>
+      <div class="container_button_signin">
+        <button
+          pButton
+          pRipple
+          label="Créer un nouveau compte"
+          class="p-button-primary"
+        ></button>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="container_form_signin">
+      <h3 class="title_signin">J'ai déjà un compte</h3>
+      <form [formGroup]="formSignin" (ngSubmit)="onFormSigninSubmit()">
+        <div class="container_input">
+          <label htmlFor="email">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            pInputText
+            id="email"
+            aria-describedby="email-help"
+          />
+          <small id="email-help">Entrez votre email</small>
+        </div>
+
+        <div class="container_input">
+          <label htmlFor="password">Mot de passe</label>
+
+          <input
+            formControlName="password"
+            type="password"
+            pInputText
+            id="password"
+            aria-describedby="password-help"
+          />
+          <small id="password-help">Entrez votre mot de passe</small>
+        </div>
+        <div class="global_error" *ngIf="globalError">
+          <p>{{ globalError }}</p>
+        </div>
+        <div class="container_button_signin">
+          <button
+            pButton
+            pRipple
+            label="Connexion"
+            class="p-button-success"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

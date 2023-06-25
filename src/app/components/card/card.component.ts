@@ -16,7 +16,6 @@ export class CardComponent implements OnInit {
       this.property.images.length > 0
     ) {
       this.firstImage = this.property.images[0].path;
-      console.log(this.firstImage);
     } else {
       this.firstImage = '../../../assets/images/logo.svg';
     }

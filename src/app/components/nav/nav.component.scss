@@ -4,9 +4,10 @@
     height: 100%;
     display: flex;
     flex: 1;
-    justify-content: space-around;
+
     align-items: center;
     li {
+      margin: 0 1rem;
       a {
         display: flex;
         flex-direction: column;

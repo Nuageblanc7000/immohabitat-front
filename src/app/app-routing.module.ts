@@ -6,13 +6,15 @@ import { PropertyService } from './services/property.service';
 import { PropertyComponent } from './page/property/property.component';
 import { PropertyResolver } from './resolver/property.resolver';
 import { PropertiesComponent } from './page/properties/properties.component';
+import { dataUserGuard } from './guards/current-user.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [dataUserGuard] },
   {
     path: 'property/:id',
     resolve: { data: PropertyResolver },
     component: PropertyComponent,
+    canActivate: [dataUserGuard],
   },
   {
     path: 'properties',

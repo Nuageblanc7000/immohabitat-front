@@ -4,9 +4,9 @@
     <div class="container_first_search">
       <div class="search_city_container">
         <p-autoComplete
-          formControlName="city"
           [suggestions]="filteredCities"
           [(ngModel)]="selected"
+          formControlName="city"
           class="search_input custom-autocomplete"
           placeholder="Entrer la ville de votre choix"
         ></p-autoComplete>

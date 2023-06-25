@@ -27,6 +27,8 @@ import { PropertiesComponent } from './page/properties/properties.component';
 import { CardComponent } from './components/card/card.component';
 import { favoriteService } from './services/favorite.service';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { AuthComponent } from './components/auth/auth.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     BooleanPipe,
     PropertiesComponent,
     CardComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,8 +62,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     GalleriaModule,
     AccordionModule,
     OverlayPanelModule,
+    InputTextModule,
   ],
-  providers: [favoriteService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,33 +1,30 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { globalService } from './global.service';
+import { BehaviorSubject, tap } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class favoriteService extends globalService {
   constructor(private _http: HttpClient) {
     super();
   }
 
-  isFavorite: boolean = false;
+  isFavorite: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   favoriteToggle(propertyId: number) {
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY4NzE5MDIxNCwiZXhwIjoxNjg3MTk3NDE0fQ.osy1z_Z_Vr31dfX-Xdulkcbasyy4WJ_iTjiMWEe_PvU',
-    });
     return this._http.patch(
       `${this.URL_API}favorites`,
       {
         propertyId: propertyId,
       },
-      { headers }
+      { withCredentials: true }
     );
   }
   userFavoriteList() {
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTY4NzE5MDIxNCwiZXhwIjoxNjg3MTk3NDE0fQ.osy1z_Z_Vr31dfX-Xdulkcbasyy4WJ_iTjiMWEe_PvU',
+    return this._http.get(`${this.URL_API}favorites`, {
+      withCredentials: true,
     });
-    return this._http.get(`${this.URL_API}favorites`, { headers });
   }
 }

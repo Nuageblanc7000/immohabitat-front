@@ -39,18 +39,15 @@ export class PropertiesComponent implements OnInit {
   filteredCities: any[] = [];
   types: any[] = ['Maison', 'Appartement'];
   searchForm!: FormGroup;
+  formValues: Record<string, any> = {};
   selected: string = '';
   ngOnInit(): void {
-    this.searchForm = this._fb.group({
-      city: [''],
-      minPrice: [''],
-      maxPrice: [''],
-      type: [''],
-    });
     //permet de récupérer les modif dans l'url
     this._activateRoute.queryParamMap
       .pipe(
         switchMap((v: any) => {
+          this.selected = v.params['city'] ? v.params['city'] : '';
+          this.formValues = { ...v.params };
           return this._propertyService.getAll({ ...v.params });
         })
       )
@@ -59,6 +56,12 @@ export class PropertiesComponent implements OnInit {
           this.properties = data.data.properties;
         },
       });
+    this.searchForm = this._fb.group({
+      city: [this.formValues!['city']],
+      minPrice: [this.formValues!['minPrice']],
+      maxPrice: [this.formValues!['maxPrice']],
+      type: [this.formValues!['type']],
+    });
 
     //form search city
     this.searchForm
@@ -85,7 +88,7 @@ export class PropertiesComponent implements OnInit {
     }
     const t: any = this._activateRoute.snapshot.queryParamMap;
     this._router.navigate([], {
-      queryParams: { ...t['params'], ...paramsValid },
+      queryParams: { ...paramsValid },
       replaceUrl: true,
       relativeTo: this._activateRoute,
     });
