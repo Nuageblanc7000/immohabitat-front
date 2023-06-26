@@ -11,7 +11,7 @@
     />
   </ng-template>
   <img
-    *ngIf="isFavorite; else isNotFavorite"
+    *ngIf="isFavorite$ | async; else isNotFavorite"
     src="../../../assets/images/like.svg"
     alt="coeur dans une maison"
   />

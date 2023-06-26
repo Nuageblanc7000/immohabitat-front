@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, first } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,9 +11,21 @@ export class NavComponent {
   @Output() isOpen: EventEmitter<boolean> = new EventEmitter();
   constructor(private authService: AuthService) {}
   isAuth$: Observable<boolean | null> = this.authService.isAuth$.asObservable();
-  isOpened = false;
+  isOpened: boolean = false;
+  isOpenedHabitat: boolean = false;
   handleIsOpen(open: boolean) {
     this.isOpened = open;
     this.isOpen.emit(open);
+  }
+  logout() {
+    this.authService.isAuth$.next(false);
+    this.authService.logout().subscribe();
+  }
+
+  openSignin() {
+    this.authService.openSignin$.next(true);
+  }
+  openMyHabitat() {
+    this.isOpenedHabitat = !this.isOpenedHabitat;
   }
 }

@@ -46,6 +46,7 @@ export class AuthService extends globalService {
       .pipe(
         tap((data: any) => {
           if (data) {
+            console.log(data, 'data');
             this.isAuth$.next(true);
             this.openSignin$.next(false);
           }
@@ -59,5 +60,18 @@ export class AuthService extends globalService {
       first((c) => c !== null),
       switchMap((x) => this.openSignin$.pipe(tap((r) => (r = true))))
     );
+  }
+
+  logout() {
+    return this._http
+      .get(`${this.URL_API}auth/logout`, {
+        withCredentials: true,
+      })
+      .pipe(
+        tap((x) => {
+          this.userSubject.next(null);
+          this.isAuth$.next(false);
+        })
+      );
   }
 }

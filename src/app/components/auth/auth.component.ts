@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, first } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  constructor(private _authService: AuthService, private _fb: FormBuilder) {}
+  constructor(
+    private _authService: AuthService,
+    private _fb: FormBuilder,
+    private _router: Router
+  ) {}
   formSignin!: FormGroup;
   isOpen: BehaviorSubject<boolean> = this._authService.openSignin$;
   globalError: string = '';
@@ -30,13 +35,24 @@ export class AuthComponent implements OnInit {
   }
   onFormSigninSubmit() {
     if (this.formSignin.valid) {
-      this._authService.signin(this.formSignin.value).subscribe({
-        error: () => (this.globalError = 'Mot de passe ou email inccorecte'),
-      });
+      this._authService
+        .signin(this.formSignin.value)
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            this.globalError = '';
+          },
+          error: () => (this.globalError = 'Mot de passe ou email inccorecte'),
+        });
     }
   }
   closeSignin(event: Event) {
     event.stopImmediatePropagation();
     this._authService.openSignin$.next(false);
+  }
+
+  redirectSignup() {
+    this._authService.openSignin$.next(false);
+    this._router.navigate(['signup']);
   }
 }

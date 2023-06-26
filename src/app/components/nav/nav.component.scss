@@ -7,24 +7,34 @@
 
     align-items: center;
     li {
+      font-weight: bold;
+      color: #3b82f6;
       margin: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      font-weight: bold;
+      color: #3b82f6;
+      user-select: none;
       a {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        font-weight: bold;
+        user-select: none;
         color: #3b82f6;
-        &::after {
-          content: "";
-          width: 0%;
-          height: 2px;
-          position: relative;
-          background-color: #22c55e;
-          transition: 0.5s ease all;
-        }
-        &:hover::after {
-          width: 100%;
-        }
+      }
+      &::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        position: relative;
+        background-color: #22c55e;
+        transition: 0.5s ease all;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+      cursor: pointer;
+      .navigation_inscription_separator {
+        color: #22c55e;
+        font-weight: bold;
       }
     }
   }
@@ -98,5 +108,89 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+//submenu
+.my_immo {
+  .immo_menu_del {
+    display: flex;
+    .immo_svg_down_black {
+      path {
+        fill: black !important;
+      }
+    }
+    .immo_svg_open {
+      width: 15px;
+      margin: 0 0.2rem;
+      fill: black;
+    }
+  }
+  position: relative;
+  .div_container_sub {
+    padding: 1rem;
+    position: absolute;
+    width: max-content;
+    background-color: white;
+    border-radius: 10px;
+    bottom: -300px;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.211);
+
+    .div_container_sub_menu_logout {
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background-color: #c6202c;
+      padding: 0.5rem 1rem 0.5rem 0.5rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: 0.5s all ease-in-out;
+      svg {
+        width: 30px;
+
+        margin: 0 0.5rem;
+      }
+      &:hover {
+        background-color: #c82d37f5;
+      }
+    }
+    flex-direction: column;
+    .div_container_sub_menu {
+      border-radius: 10px;
+      margin: 0.5rem 0;
+      a {
+        display: flex;
+        align-items: center;
+        align-items: center;
+        color: black;
+        border-radius: 10px;
+        width: 100%;
+        font-weight: bold;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+        transition: 0.5s all ease-in-out;
+        &:hover {
+          background-color: #3b82f6;
+          color: white;
+          .svg_sub_menu {
+            path {
+              fill: white;
+            }
+          }
+        }
+        .svg_sub_menu {
+          width: 30px;
+          margin: 0 0.5rem;
+          path {
+            fill: black;
+          }
+        }
+      }
+      color: black;
+    }
   }
 }

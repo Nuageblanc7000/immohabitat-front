@@ -29,6 +29,7 @@ import { favoriteService } from './services/favorite.service';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AuthComponent } from './components/auth/auth.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { SignupComponent } from './page/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { InputTextModule } from 'primeng/inputtext';
     PropertiesComponent,
     CardComponent,
     AuthComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

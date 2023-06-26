@@ -1,12 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
+  BehaviorSubject,
   Subscription,
   catchError,
-  filter,
-  first,
   map,
   of,
   switchMap,
+  take,
   tap,
 } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -26,75 +26,71 @@ export class FavorisComponent implements OnInit, OnDestroy {
   @Input() height: number = 80;
   @Input() propertyId!: number;
 
-  isFavorite: boolean = false;
-  isUser: boolean = false;
+  private isFavoriteSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  isFavorite$ = this.isFavoriteSubject.asObservable();
+  unsubScribe: Subscription = new Subscription();
+
   listFavoriteUser: any[] = [];
   private _unSubScribe: Subscription = new Subscription();
   ngOnInit(): void {
-    this._unSubScribe.add(
-      this._authService.isAuth$.pipe(first()).subscribe({
-        next: (b: boolean) => {
-          this.isUser = b;
-          if (this.isUser) {
-            this._favoriteService.userFavoriteList().subscribe({
-              next: (data: any) => {
-                this.listFavoriteUser = data.data[0];
-                this.isFavorite = this.listFavoriteUser.some(
-                  (p) => p.isFavorite && p.property.id === this.propertyId
-                );
-              },
-            });
-          }
-        },
-      })
+    this.unsubScribe.add(
+      this._authService.isAuth$
+        .pipe(
+          switchMap((x) => {
+            if (x) {
+              return this._favoriteService.userFavoriteList().pipe(
+                tap((x: any) => {
+                  this.isFavoriteSubject.next(
+                    x.data[0].some(
+                      (p: any) =>
+                        p.isFavorite && p.property.id === this.propertyId
+                    )
+                  );
+                })
+              );
+            } else {
+              this.isFavoriteSubject.next(false);
+              return of(false);
+            }
+          })
+        )
+        .subscribe()
     );
   }
   ngOnDestroy(): void {
     this._unSubScribe.unsubscribe();
   }
   changeFavorite() {
+    console.log('ici');
     //demain on va juste changer le user et ici vérif! avec un observable
+
     this._authService.isAuth$
       .pipe(
-        tap((auth) => {
-          this.isUser = auth;
+        tap((x) => {
+          console.log(x);
         }),
+        take(1),
         switchMap((auth) => {
           if (auth) {
             return this._favoriteService.favoriteToggle(this.propertyId).pipe(
-              first(),
-              tap((data: any) => (this.isFavorite = data.data)),
-              catchError((x) => {
-                this._authService.isAuth$.next(false);
-                return of(x);
+              tap((data: any) => this.isFavoriteSubject.next(data.data)),
+              catchError((error) => {
+                if (error.status === 401) {
+                  // L'utilisateur n'est pas authentifié, mettez isAuth à false
+                  this.isFavoriteSubject.next(false);
+                  this._authService.isAuth$.next(false);
+                }
+                return of(error);
               })
             );
           } else {
+            // L'utilisateur n'est pas authentifié, effectuez les actions nécessaires
             this._authService.openSignin$.next(true);
             return of(false);
           }
         })
       )
       .subscribe();
-    // if (this.isUser) {
-
-    //   this.isFavorite = !this.isFavorite;
-    //   this._favoriteService
-    //     .favoriteToggle(this.propertyId)
-    //     .pipe(
-    //       first(),
-    //       catchError((x) => {
-    //         console.log(x, '--------Q', this.isUser);
-    //         this._authService.isAuth$.next(false);
-    //         return of(x);
-    //       })
-    //     )
-    //     .subscribe({
-    //       next: (data: any) => (this.isFavorite = data.data),
-    //     });
-    // } else {
-    //   console.log('ici');
-    //   this._authService.openSignin$.next(true);
-    // }
   }
 }

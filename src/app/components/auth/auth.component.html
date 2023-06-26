@@ -1,8 +1,7 @@
-<div *ngIf="isOpen | async" class="container_main_all">
+<div *ngIf="isOpen | async as open" class="container_main_all">
   <div class="container_overflow_signin" (click)="closeSignin($event)"></div>
   <div class="container_main_signin">
     <button class="close" (click)="closeSignin($event)">x</button>
-
     <div class="info_signin_container">
       <div class="info_signin_context">
         <h3 class="title_signin">Je veux créer un compte</h3>
@@ -19,6 +18,7 @@
           pRipple
           label="Créer un nouveau compte"
           class="p-button-primary"
+          (click)="redirectSignup()"
         ></button>
       </div>
     </div>
