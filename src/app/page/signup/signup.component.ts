@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { first, take, tap } from 'rxjs';
+import { Subscription, first, take, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,19 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   constructor(private _authService: AuthService, private _router: Router) {}
+  private _unsubscribe: Subscription = new Subscription();
   ngOnInit(): void {
-    this._authService.isAuth$
-      .pipe(
-        first(),
-        tap((x: boolean) => {
-          if (x) {
-            console.log(x);
-            this._router.navigate(['/']);
-          }
-        })
-      )
-      .subscribe();
+    this._unsubscribe.add(
+      this._authService.isAuth$.subscribe({
+        next: (isUser: boolean) => {
+          if (isUser) this._router.navigate(['/']);
+        },
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this._unsubscribe.unsubscribe;
   }
 }

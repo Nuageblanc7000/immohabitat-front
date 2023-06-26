@@ -8,14 +8,13 @@ import { PropertyResolver } from './resolver/property.resolver';
 import { PropertiesComponent } from './page/properties/properties.component';
 import { dataUserGuard } from './guards/current-user.guard';
 import { SignupComponent } from './page/signup/signup.component';
-import { notUserConnected } from './guards/not-user.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [dataUserGuard] },
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [dataUserGuard, notUserConnected],
+    canActivate: [dataUserGuard],
   },
   {
     path: 'property/:id',
