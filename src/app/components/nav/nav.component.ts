@@ -20,6 +20,7 @@ export class NavComponent {
   logout() {
     this.authService.isAuth$.next(false);
     this.authService.logout().subscribe();
+    this.isOpenedHabitat = false;
   }
 
   openSignin() {

@@ -1,1 +1,69 @@
-<p>signup works!</p>
+<section class="signup_container">
+  <div class="container_form_signup container">
+    <h2>Créer un compte</h2>
+
+    <form [formGroup]="formSignup" class="form_signup">
+      <div class="container_input">
+        <label htmlFor="firstname">Prénom</label>
+        <input
+          formControlName="firstname"
+          type="text"
+          pInputText
+          id="firstname"
+          aria-describedby="firstname-help"
+        />
+        <small id="firstname-help">Entrez votre prénom</small>
+      </div>
+      <div class="container_input">
+        <label htmlFor="lastname">Nom</label>
+        <input
+          formControlName="lastname"
+          type="text"
+          pInputText
+          id="lastname"
+          aria-describedby="lastname-help"
+        />
+        <small id="lastname-help">Entrez votre nom</small>
+      </div>
+      <div class="container_input">
+        <label htmlFor="email">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          pInputText
+          id="email"
+          aria-describedby="email-help"
+        />
+        <small id="email-help">Entrez votre email</small>
+      </div>
+      <div class="container_input">
+        <label htmlFor="password">Mot de passe</label>
+        <input
+          formControlName="password"
+          type="password"
+          pInputText
+          id="password"
+          aria-describedby="password-help"
+        />
+        <small id="password-help"
+          >Le mot de passe doit contenir au moins une majuscule, un chiffre et
+          un caractère spécial.'</small
+        >
+      </div>
+      -
+      <div class="conditon_term_signup">
+        <p>
+          J'accepte les Conditions d'utilisation et la politique de vie privée.
+        </p>
+      </div>
+      <div class="container_button_signup">
+        <button
+          pButton
+          pRipple
+          label="Créer mon compte"
+          class="p-button-success"
+        ></button>
+      </div>
+    </form>
+  </div>
+</section>

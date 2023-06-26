@@ -1,0 +1,51 @@
+.signup_container {
+  height: 100%;
+  background-image: url("../../../assets/images/back_signupv5.svg");
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 576px) {
+    background-image: none;
+  }
+  .container_form_signup {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.214);
+    max-width: 800px;
+    width: 100%;
+    min-height: 400px;
+    @media (max-width: 576px) {
+      border-radius: 0;
+      background-image: url("../../../assets/images/back_signupv4.svg");
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .form_signup {
+      display: flex;
+      flex-direction: column;
+      .container_input {
+        display: flex;
+        flex-direction: column;
+        input {
+          background-color: #3b83f659;
+        }
+        margin: 0.5rem 0;
+      }
+      .conditon_term_signup {
+        text-align: center;
+      }
+      .container_button_signup {
+        margin: 1rem 0;
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
