@@ -53,7 +53,9 @@ export class AuthService extends globalService {
         })
       );
   }
-  signup() {}
+  signup(user: IUser): Observable<IUser> {
+    return this._http.post<IUser>(`${this.URL_API}auth/signup`, user);
+  }
 
   openPopConnection() {
     const isUser = this.isAuth$.pipe(

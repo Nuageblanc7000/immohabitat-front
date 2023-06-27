@@ -1,8 +1,21 @@
 <section class="signup_container">
   <div class="container_form_signup container">
-    <h2>Créer un compte</h2>
+    <h2 *ngIf="!complete">Créer un compte</h2>
+    <div *ngIf="complete" class="signup_complete">
+      <h2>Inscription Réussie bienvenu !</h2>
+      <img
+        src="../../../assets/images/key_immo.svg"
+        alt="clée avec logo immohabitat"
+      />
 
-    <form [formGroup]="formSignup" class="form_signup">
+      <h5>Redirection sur la page d'accueil dans quelques secondes...</h5>
+    </div>
+    <form
+      *ngIf="!complete"
+      [formGroup]="formSignup"
+      (ngSubmit)="onSubmitSignup()"
+      class="form_signup"
+    >
       <div class="container_input">
         <label htmlFor="firstname">Prénom</label>
         <input
@@ -12,7 +25,11 @@
           id="firstname"
           aria-describedby="firstname-help"
         />
-        <small id="firstname-help">Entrez votre prénom</small>
+        <small
+          id="firstname-help"
+          [ngClass]="{ errors_form: firstname?.invalid && firstname?.touched }"
+          >Entrez votre prénom *</small
+        >
       </div>
       <div class="container_input">
         <label htmlFor="lastname">Nom</label>
@@ -23,7 +40,12 @@
           id="lastname"
           aria-describedby="lastname-help"
         />
-        <small id="lastname-help">Entrez votre nom</small>
+
+        <small
+          id="lastname-help"
+          [ngClass]="{ errors_form: lastname?.invalid && lastname?.touched }"
+          >Entrez votre nom *</small
+        >
       </div>
       <div class="container_input">
         <label htmlFor="email">Email</label>
@@ -34,28 +56,51 @@
           id="email"
           aria-describedby="email-help"
         />
-        <small id="email-help">Entrez votre email</small>
+        <small
+          id="email-help"
+          [ngClass]="{ errors_form: email?.invalid && email?.touched }"
+        >
+          <p *ngIf="email?.errors?.['email']">
+            Veuillez indiquer un email valide
+          </p>
+          <p *ngIf="!email?.errors?.['email']">Entrez votre email *</p>
+        </small>
       </div>
       <div class="container_input">
         <label htmlFor="password">Mot de passe</label>
         <input
+          pattern="(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}"
           formControlName="password"
           type="password"
           pInputText
           id="password"
           aria-describedby="password-help"
         />
-        <small id="password-help"
-          >Le mot de passe doit contenir au moins une majuscule, un chiffre et
-          un caractère spécial.'</small
+        <small
+          id="password-help"
+          [ngClass]="{ errors_form: password?.invalid && password?.touched }"
+          >Le mot de passe doit contenir 8 caractères, une majuscule, un chiffre
+          et un caractère spécial.</small
         >
       </div>
-      -
+
+      <div class="global_error" *ngIf="globalError">
+        <p>{{ globalError }}</p>
+      </div>
+
       <div class="conditon_term_signup">
         <p>
-          J'accepte les Conditions d'utilisation et la politique de vie privée.
+          J'accepte
+          <a class="condition" [routerLink]="['/']"
+            >les Conditions d'utilisation</a
+          >
+          et
+          <a class="condition" [routerLink]="['/']"
+            >la politique de vie privée </a
+          >.
         </p>
       </div>
+
       <div class="container_button_signup">
         <button
           pButton
