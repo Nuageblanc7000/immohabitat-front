@@ -1,0 +1,32 @@
+<section class="info_container_profil">
+  <div class="picture_profil"></div>
+  <div>
+    <h2>Mes informations personnelles</h2>
+
+    <div class="container_info_input">
+      <p>
+        <span>Email:</span>
+        {{ user?.email }}
+      </p>
+    </div>
+    <div class="container_info_input">
+      <p>
+        <span>Nom:</span>
+        {{ user?.lastname }}
+      </p>
+    </div>
+    <div class="container_info_input">
+      <p>
+        <span>Prénom:</span>
+
+        {{ user?.firstname }}
+      </p>
+    </div>
+    <div class="container_info_input">
+      <p>
+        <span>Téléphone:</span>
+        {{ user?.phone ? user?.phone : "..." }}
+      </p>
+    </div>
+  </div>
+</section>

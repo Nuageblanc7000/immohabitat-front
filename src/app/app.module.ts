@@ -25,11 +25,18 @@ import { BooleanPipe } from './pipes/boolean.pipe';
 import { AccordionModule } from 'primeng/accordion';
 import { PropertiesComponent } from './page/properties/properties.component';
 import { CardComponent } from './components/card/card.component';
-import { favoriteService } from './services/favorite.service';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AuthComponent } from './components/auth/auth.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { SignupComponent } from './page/signup/signup.component';
+import { ProfilComponent } from './page/profil/profil.component';
+import { PasswordComponent } from './page/profil/components/password/password.component';
+import { FormProfilComponent } from './page/profil/components/form-profil/form-profil.component';
+import { InfoComponent } from './page/profil/components/info/info.component';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { FormEmailComponent } from './page/profil/components/form-email/form-email.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -48,6 +55,11 @@ import { SignupComponent } from './page/signup/signup.component';
     CardComponent,
     AuthComponent,
     SignupComponent,
+    ProfilComponent,
+    PasswordComponent,
+    FormProfilComponent,
+    InfoComponent,
+    FormEmailComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,8 +77,10 @@ import { SignupComponent } from './page/signup/signup.component';
     AccordionModule,
     OverlayPanelModule,
     InputTextModule,
+    ToastModule,
+    ConfirmDialogModule,
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

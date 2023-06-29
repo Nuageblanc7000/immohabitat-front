@@ -17,7 +17,7 @@ export class CardComponent implements OnInit {
     ) {
       this.firstImage = this.property.images[0].path;
     } else {
-      this.firstImage = '../../../assets/images/logo.svg';
+      this.firstImage = '../../../assets/images/schematic.svg';
     }
   }
 }

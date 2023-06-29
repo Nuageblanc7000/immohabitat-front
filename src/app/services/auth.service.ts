@@ -4,13 +4,8 @@ import {
   BehaviorSubject,
   Observable,
   ReplaySubject,
-  Subject,
-  catchError,
-  filter,
   first,
-  of,
   switchMap,
-  take,
   tap,
 } from 'rxjs';
 import { ICredential } from '../interfaces/ICredential.interface';
@@ -46,7 +41,8 @@ export class AuthService extends globalService {
       .pipe(
         tap((data: any) => {
           if (data) {
-            console.log(data, 'data');
+            console.log(data.data.user, 'ici--------> dans signin');
+            this.userSubject.next(data.data.user);
             this.isAuth$.next(true);
             this.openSignin$.next(false);
           }
@@ -71,9 +67,19 @@ export class AuthService extends globalService {
       })
       .pipe(
         tap((x) => {
+          console.log(x, 'logout');
           this.userSubject.next(null);
           this.isAuth$.next(false);
         })
       );
+  }
+
+  //softDelete
+  softDelete(): Observable<any> {
+    return this._http
+      .delete(`${this.URL_API}users`, {
+        withCredentials: true,
+      })
+      .pipe(switchMap(() => this.logout()));
   }
 }

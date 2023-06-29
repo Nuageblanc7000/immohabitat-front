@@ -8,12 +8,39 @@ import { PropertyResolver } from './resolver/property.resolver';
 import { PropertiesComponent } from './page/properties/properties.component';
 import { dataUserGuard } from './guards/current-user.guard';
 import { SignupComponent } from './page/signup/signup.component';
+import { ProfilComponent } from './page/profil/profil.component';
+import { IsAuthGuard } from './guards/is-auth.guard';
+import { PasswordComponent } from './page/profil/components/password/password.component';
+import { FormProfilComponent } from './page/profil/components/form-profil/form-profil.component';
+import { InfoComponent } from './page/profil/components/info/info.component';
+import { FormEmailComponent } from './page/profil/components/form-email/form-email.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [dataUserGuard] },
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [dataUserGuard],
+  },
   {
     path: 'signup',
     component: SignupComponent,
+    canActivate: [dataUserGuard],
+  },
+  {
+    path: 'profil',
+    component: ProfilComponent,
+    canActivate: [dataUserGuard, IsAuthGuard],
+    children: [
+      { path: '', redirectTo: 'info', pathMatch: 'full' },
+      { path: 'info', component: InfoComponent },
+      { path: 'profil-modify', component: FormProfilComponent },
+      { path: 'email-modify', component: FormEmailComponent },
+      { path: 'password-modify', component: PasswordComponent },
+    ],
+  },
+  {
+    path: 'properties',
+    component: PropertiesComponent,
     canActivate: [dataUserGuard],
   },
   {
@@ -21,10 +48,6 @@ const routes: Routes = [
     resolve: { data: PropertyResolver },
     component: PropertyComponent,
     canActivate: [dataUserGuard],
-  },
-  {
-    path: 'properties',
-    component: PropertiesComponent,
   },
 ];
 

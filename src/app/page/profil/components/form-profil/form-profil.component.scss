@@ -1,0 +1,25 @@
+.section_form_profil_container {
+  height: 100%;
+  margin-top: 2rem;
+  .form_signup {
+    display: flex;
+    flex-direction: column;
+    .container_input {
+      display: flex;
+      flex-direction: column;
+      input {
+        background-color: #3b83f659;
+      }
+      margin: 0.5rem 0;
+    }
+    .conditon_term_signup {
+      text-align: center;
+    }
+    .container_button_signup {
+      margin: 1rem 0;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

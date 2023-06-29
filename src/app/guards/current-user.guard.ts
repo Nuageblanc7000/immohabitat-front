@@ -1,16 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import {
-  Observable,
-  catchError,
-  first,
-  map,
-  of,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
+import { map, of, switchMap, take, tap } from 'rxjs';
 import { IUser } from '../interfaces/IUser.interface';
 
 export const dataUserGuard: CanActivateFn = () => {
@@ -19,16 +10,18 @@ export const dataUserGuard: CanActivateFn = () => {
     take(1),
     switchMap((user: IUser | null) => {
       if (user) {
+        console.log('ici dans le switchmap', user);
         return of(true);
       } else {
+        console.log('on injecte le user');
         return authService.fetchCurrentUser().pipe(
           tap((x: any) => {
             if (x.data === null) {
-              console.log(x.data, 'je viens ici ---->');
+              console.log(x, 'xdata');
               authService.isAuth$.next(false);
             } else {
-              console.log('ici plutot');
-              authService.userSubject.next(x.data);
+              console.log(x, 'on injecte ici');
+              authService.userSubject.next(x.data.user);
               authService.isAuth$.next(true);
             }
           }),

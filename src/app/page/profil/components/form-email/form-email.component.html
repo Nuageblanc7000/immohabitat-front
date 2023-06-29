@@ -1,0 +1,43 @@
+<section class="section_form_profil_container container">
+  <p-toast position="top-center" key="tc"></p-toast>
+  <h2>Modifier mon profil Immohabitat</h2>
+
+  <form
+    [formGroup]="formUpdate"
+    (ngSubmit)="onSubmitUpdate()"
+    class="form_signup"
+  >
+    <div class="container_input">
+      <label htmlFor="email">Nouveau email</label>
+      <input
+        formControlName="email"
+        type="text"
+        pInputText
+        id="email"
+        aria-describedby="email-help"
+      />
+      <small
+        id="email-help"
+        [ngClass]="{ errors_form: email?.invalid && email?.touched }"
+      >
+        <p *ngIf="email?.errors?.['email']">
+          Veuillez indiquer un email valide
+        </p>
+        <p *ngIf="!email?.errors?.['email']">Entrez votre email *</p>
+      </small>
+    </div>
+
+    <div class="global_error" *ngIf="globalError">
+      <p>{{ globalError }}</p>
+    </div>
+
+    <div class="container_button_signup">
+      <button
+        pButton
+        pRipple
+        label="Modifier mon email"
+        class="p-button-success"
+      ></button>
+    </div>
+  </form>
+</section>

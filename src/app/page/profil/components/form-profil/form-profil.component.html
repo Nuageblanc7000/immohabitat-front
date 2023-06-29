@@ -1,0 +1,70 @@
+<section class="section_form_profil_container container">
+  <p-toast position="top-center" key="tc"></p-toast>
+  <h2>Modifier mon profil Immohabitat</h2>
+
+  <form
+    [formGroup]="formUpdate"
+    (ngSubmit)="onSubmitUpdate()"
+    class="form_signup"
+  >
+    <div class="container_input">
+      <label htmlFor="firstname">Prénom</label>
+      <input
+        formControlName="firstname"
+        type="text"
+        pInputText
+        id="firstname"
+        aria-describedby="firstname-help"
+      />
+      <small
+        id="firstname-help"
+        [ngClass]="{ errors_form: firstname?.invalid && firstname?.touched }"
+        >Entrez votre prénom *</small
+      >
+    </div>
+    <div class="container_input">
+      <label htmlFor="lastname">Nom</label>
+      <input
+        formControlName="lastname"
+        type="text"
+        pInputText
+        id="lastname"
+        aria-describedby="lastname-help"
+      />
+
+      <small
+        id="lastname-help"
+        [ngClass]="{ errors_form: lastname?.invalid && lastname?.touched }"
+        >Entrez votre nom *</small
+      >
+    </div>
+    <div class="container_input">
+      <label htmlFor="phone">Téléphone</label>
+      <input
+        formControlName="phone"
+        type="tel"
+        pInputText
+        id="phone"
+        aria-describedby="phone-help"
+      />
+      <small
+        id="phone-help"
+        [ngClass]="{ errors_form: phone?.invalid && phone?.touched }"
+        >Entrez votre numéro de téléphone ex:+3204700000 *</small
+      >
+    </div>
+
+    <div class="global_error" *ngIf="globalError">
+      <p>{{ globalError }}</p>
+    </div>
+
+    <div class="container_button_signup">
+      <button
+        pButton
+        pRipple
+        label="Modifier mon profil"
+        class="p-button-success"
+      ></button>
+    </div>
+  </form>
+</section>
