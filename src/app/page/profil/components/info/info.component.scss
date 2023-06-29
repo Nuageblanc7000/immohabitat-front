@@ -15,7 +15,12 @@
   }
   height: 100%;
   margin-top: 1rem;
-
+  @media (max-width: 768px) {
+    flex-direction: column;
+    .picture_profil {
+      margin: 0 auto;
+    }
+  }
   .container_info_input {
     margin: 1rem 0;
     span {

@@ -32,10 +32,26 @@ const routes: Routes = [
     canActivate: [dataUserGuard, IsAuthGuard],
     children: [
       { path: '', redirectTo: 'info', pathMatch: 'full' },
-      { path: 'info', component: InfoComponent },
-      { path: 'profil-modify', component: FormProfilComponent },
-      { path: 'email-modify', component: FormEmailComponent },
-      { path: 'password-modify', component: PasswordComponent },
+      {
+        path: 'info',
+        component: InfoComponent,
+        canActivate: [dataUserGuard, IsAuthGuard],
+      },
+      {
+        path: 'profil-modify',
+        component: FormProfilComponent,
+        canActivate: [dataUserGuard, IsAuthGuard],
+      },
+      {
+        path: 'email-modify',
+        component: FormEmailComponent,
+        canActivate: [dataUserGuard, IsAuthGuard],
+      },
+      {
+        path: 'password-modify',
+        component: PasswordComponent,
+        canActivate: [dataUserGuard, IsAuthGuard],
+      },
     ],
   },
   {

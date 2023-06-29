@@ -1,6 +1,5 @@
 .container_profil {
   height: 100%;
-
   margin-top: 1rem;
   align-items: center;
   //   background-image: url("../../../assets/images/schematic.svg");
@@ -15,16 +14,35 @@
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.278);
     a {
       flex-grow: 1;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       font-weight: 700;
       color: black;
       padding: 1rem 1.5rem;
-      @media (max-width: 578px) {
-        padding: 1rem 0.5rem;
+      svg {
+        width: 50px;
+        margin-right: 0.8rem;
+      }
+      @media (max-width: 768px) {
+        padding: 0.5rem 0.2rem;
+        svg {
+          margin-right: 0;
+        }
         span {
           display: none;
         }
+      }
+      @media (max-width: 1200px) {
+        svg {
+          margin-right: 0;
+        }
+        span {
+          font-size: 0.8rem;
+          margin-top: 0.2rem;
+        }
+        flex-direction: column;
       }
       border-radius: 10px;
       transition: 0.5s all ease-in-out;
@@ -37,18 +55,43 @@
 }
 .sub_header_profil_action {
   .sub_header_container {
-    padding: 0.5rem 0;
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
     justify-content: space-between;
+    h2 {
+      font-size: 1.2rem;
+    }
   }
 }
 .router-link-active {
   background-color: #3b82f6;
   color: white !important;
+  svg {
+    path {
+      fill: white;
+    }
+  }
 }
 
 .conf_dialog_delete_account {
   max-width: 400px;
+}
+.desactived_user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 40px;
+    margin-right: 0.2rem;
+  }
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.2rem;
+    svg {
+      margin-right: 0;
+    }
+    span {
+      display: none;
+    }
+  }
 }
