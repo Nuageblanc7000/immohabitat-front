@@ -16,6 +16,7 @@ export class PropertyComponent implements OnInit {
   imagesThree: any[] = [];
   valueChange = [];
 
+  imagePath: string = '../../../assets/images/schematic.svg';
   property!: Iproperty;
   constructor(private _activateRoute: ActivatedRoute) {
     this.responsiveOptions = [
@@ -55,5 +56,9 @@ export class PropertyComponent implements OnInit {
   imageClick(index: number) {
     this.activeIndex = index;
     this.displayCustom = true;
+  }
+  handleImageError(e: Event) {
+    const target = e.target as HTMLImageElement;
+    target.src = this.imagePath;
   }
 }

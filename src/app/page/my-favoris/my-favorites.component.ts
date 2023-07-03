@@ -16,6 +16,7 @@ export class MyFavorisComponent {
     private _authService: AuthService,
     private _router: Router
   ) {}
+
   myFavorites: any[] = [];
   imagePath: string = '../../../assets/images/schematic.svg';
   unsubScribe: Subscription = new Subscription();

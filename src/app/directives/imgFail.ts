@@ -10,6 +10,7 @@ export class ImageFallbackDirective {
 
   @HostListener('error')
   onError() {
+    console.log('error');
     this.elementRef.nativeElement.src = this.appImageFallback;
   }
 }
