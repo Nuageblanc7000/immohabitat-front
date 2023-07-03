@@ -1,6 +1,8 @@
 .favoris_container {
   display: flex;
   width: 100%;
+  position: relative;
+  z-index: 2;
   img {
     max-width: 100%;
     cursor: pointer;

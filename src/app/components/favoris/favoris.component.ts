@@ -1,13 +1,19 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   BehaviorSubject,
   Subscription,
-  catchError,
-  map,
   of,
+  catchError,
+  tap,
   switchMap,
   take,
-  tap,
 } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { favoriteService } from 'src/app/services/favorite.service';
@@ -22,27 +28,31 @@ export class FavorisComponent implements OnInit, OnDestroy {
     private _favoriteService: favoriteService,
     private _authService: AuthService
   ) {}
+
   @Input() maxWidth: number = 80;
   @Input() height: number = 80;
   @Input() propertyId!: number;
+  @Output() favoriteClicked: EventEmitter<{
+    propertyId: number;
+    event: Event;
+  }> = new EventEmitter<{ propertyId: number; event: Event }>();
 
   private isFavoriteSubject: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
   isFavorite$ = this.isFavoriteSubject.asObservable();
-  unsubScribe: Subscription = new Subscription();
 
-  listFavoriteUser: any[] = [];
   private _unSubScribe: Subscription = new Subscription();
+
   ngOnInit(): void {
-    this.unsubScribe.add(
+    this._unSubScribe.add(
       this._authService.isAuth$
         .pipe(
           switchMap((x) => {
             if (x) {
               return this._favoriteService.userFavoriteList().pipe(
-                tap((x: any) => {
+                tap((data: any) => {
                   this.isFavoriteSubject.next(
-                    x.data[0].some(
+                    data.some(
                       (p: any) =>
                         p.isFavorite && p.property.id === this.propertyId
                     )
@@ -58,26 +68,27 @@ export class FavorisComponent implements OnInit, OnDestroy {
         .subscribe()
     );
   }
+
   ngOnDestroy(): void {
     this._unSubScribe.unsubscribe();
   }
-  changeFavorite() {
-    console.log('ici');
-    //demain on va juste changer le user et ici vérif! avec un observable
+
+  changeFavorite(e: Event) {
+    console.log('test de la mort');
 
     this._authService.isAuth$
       .pipe(
-        tap((x) => {
-          console.log(x);
-        }),
-        take(1),
+        take(1), // Utilisez take(1) pour ne recevoir qu'une seule valeur de l'observable
         switchMap((auth) => {
           if (auth) {
             return this._favoriteService.favoriteToggle(this.propertyId).pipe(
-              tap((data: any) => this.isFavoriteSubject.next(data.data)),
+              tap((data: any) => {
+                console.log(data, '------------->data<');
+                this.isFavoriteSubject.next(data.data);
+              }),
               catchError((error) => {
+                console.log(error, '------------->data<');
                 if (error.status === 401) {
-                  // L'utilisateur n'est pas authentifié, mettez isAuth à false
                   this.isFavoriteSubject.next(false);
                   this._authService.isAuth$.next(false);
                 }
@@ -85,7 +96,6 @@ export class FavorisComponent implements OnInit, OnDestroy {
               })
             );
           } else {
-            // L'utilisateur n'est pas authentifié, effectuez les actions nécessaires
             this._authService.openSignin$.next(true);
             return of(false);
           }

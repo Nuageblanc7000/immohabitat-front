@@ -14,11 +14,17 @@ import { PasswordComponent } from './page/profil/components/password/password.co
 import { FormProfilComponent } from './page/profil/components/form-profil/form-profil.component';
 import { InfoComponent } from './page/profil/components/info/info.component';
 import { FormEmailComponent } from './page/profil/components/form-email/form-email.component';
+import { MyFavorisComponent } from './page/my-favoris/my-favorites.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [dataUserGuard],
+  },
+  {
+    path: 'properties',
+    component: PropertiesComponent,
     canActivate: [dataUserGuard],
   },
   {
@@ -55,10 +61,11 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'properties',
-    component: PropertiesComponent,
-    canActivate: [dataUserGuard],
+    path: 'favorites-list',
+    component: MyFavorisComponent,
+    canActivate: [dataUserGuard, IsAuthGuard],
   },
+
   {
     path: 'property/:id',
     resolve: { data: PropertyResolver },

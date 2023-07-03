@@ -60,12 +60,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       next: (data: any) => {
         this.newProperties = data.data.properties;
         this.isLoading = false;
-        console.log(data);
       },
     });
     this._propertyService.getAllCitiesByProperties().subscribe({
       next: (data: any) => {
-        console.log(data);
         this.citiesSearch = data.data;
       },
     });
@@ -79,7 +77,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (data: any) => {
-          console.log(data);
           this.filteredCities = data.data.cities.map((p: Icity) => p.localite);
         },
       });

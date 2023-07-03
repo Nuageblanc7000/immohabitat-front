@@ -39,7 +39,6 @@ export class SignupComponent implements OnInit, OnDestroy {
         .pipe(
           tap((p: boolean) => {
             if (p) {
-              console.log(p, 'ici---->');
               this._router.navigate(['/']);
             }
           })
@@ -69,7 +68,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.formSignup.markAllAsTouched();
     this.globalError = '';
     if (this.formSignup.valid) {
-      console.log(this.formSignup);
       this._authService.signup(this.formSignup.value).subscribe({
         next: () => {
           let timeOut: any = undefined;

@@ -10,17 +10,13 @@ export const dataUserGuard: CanActivateFn = () => {
     take(1),
     switchMap((user: IUser | null) => {
       if (user) {
-        console.log('ici dans le switchmap', user);
         return of(true);
       } else {
-        console.log('on injecte le user');
         return authService.fetchCurrentUser().pipe(
           tap((x: any) => {
             if (x.data === null) {
-              console.log(x, 'xdata');
               authService.isAuth$.next(false);
             } else {
-              console.log(x, 'on injecte ici');
               authService.userSubject.next(x.data.user);
               authService.isAuth$.next(true);
             }

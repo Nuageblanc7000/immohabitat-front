@@ -1,0 +1,110 @@
+.container_my_favorites {
+  height: 100%;
+}
+.my_favorites_grid {
+  margin-top: 1rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+  grid-gap: 20px;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .my_favorites_card {
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s all ease-in-out;
+    box-shadow: 4px 3px 3px rgba(0, 0, 0, 0.213);
+    .link_favoris_property {
+      position: absolute;
+      background-color: red($color: #000000);
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+    &:hover img {
+      transform: scale(1.1);
+    }
+    img {
+      position: absolute;
+      transition: 0.5s all ease-in-out;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 400px;
+      z-index: -1;
+      object-fit: cover;
+    }
+    border-radius: 5px;
+    min-height: 400px;
+    &::after {
+      position: absolute;
+      content: "";
+      background-color: rgba(0, 0, 0, 0.176);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      user-select: none;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .container_inside_favoris {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .container_top_favoris_card {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .price_favoris {
+          p {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+          }
+        }
+      }
+      padding: 1rem;
+
+      .info_favoris_property_container {
+        width: 100%;
+        .info_favoris_property {
+          display: flex;
+          align-items: center;
+          svg {
+            width: 4vh;
+            margin-right: 1rem;
+          }
+          span {
+            color: white;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+.container_not_favoris {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 400px;
+    max-height: 400px;
+  }
+  span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}

@@ -13,7 +13,12 @@
     </ng-container>
 
     <ng-container *ngIf="isAuth$ | async">
-      <div class="my_immo">
+      <div
+        class="my_immo"
+        appOutsideClick
+        [isOpen]="isOpenedHabitat"
+        (appOutsideClick)="closeHabitatMenu()"
+      >
         <li (click)="openMyHabitat()">
           <div class="immo_menu_del">
             Mon immohabitat
@@ -141,7 +146,7 @@
             </a>
           </div>
           <div class="div_container_sub_menu">
-            <a href="">
+            <a [routerLink]="['/favorites-list']">
               <span class="svg_sub_menu">
                 <svg
                   id="Mode_Isolation"
@@ -204,7 +209,7 @@
     </ng-container>
   </ul>
 </nav>
-<div class="icon nav-icon-5 burger_phone" (click)="handleIsOpen(!isOpened)">
+<div class="icon nav-icon-5 burger_phone" (click)="handleIsOpen()">
   <span></span>
   <span></span>
   <span></span>

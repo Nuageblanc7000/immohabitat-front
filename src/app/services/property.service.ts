@@ -15,7 +15,6 @@ export class PropertyService extends globalService {
   private url_base_property = `${this.URL_API}properties`;
 
   getAll(queryParam: any = null): Observable<Iproperty[]> {
-    console.log(queryParam, '---------->findall');
     const queryParams = new URLSearchParams();
 
     for (const key in queryParam) {
@@ -25,8 +24,6 @@ export class PropertyService extends globalService {
     }
 
     const queryString = queryParams.toString();
-
-    console.log(queryString);
 
     return this._Http.get<Iproperty[]>(
       `${this.url_base_property}?${queryString}`

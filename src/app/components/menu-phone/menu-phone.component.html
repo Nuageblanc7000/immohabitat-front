@@ -6,7 +6,7 @@
     <ng-template #isConnectedUser>
       <ul class="menu_phone_ul">
         <li>
-          <a href="">
+          <a [routerLink]="['/routePath']" (click)="linkclickClose()">
             <span class="svg_sub_menu">
               <svg
                 id="Mode_Isolation"
@@ -46,8 +46,8 @@
             <span> Publier une annonce </span>
           </a>
         </li>
-        <li>
-          <a href="">
+        <li (click)="linkclickClose()">
+          <a [routerLink]="['/profil']">
             <span class="svg_sub_menu">
               <svg
                 id="Mode_Isolation"
@@ -89,7 +89,7 @@
           </a>
         </li>
         <li>
-          <a href="">
+          <a [routerLink]="['/routePath']">
             <span class="svg_sub_menu"
               ><svg
                 id="Mode_Isolation"
@@ -126,7 +126,7 @@
           </a>
         </li>
         <li>
-          <a href="">
+          <a [routerLink]="['/routePath']">
             <span class="svg_sub_menu">
               <svg
                 id="Mode_Isolation"

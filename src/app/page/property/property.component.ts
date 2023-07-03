@@ -41,7 +41,7 @@ export class PropertyComponent implements OnInit {
     this._activateRoute.data.subscribe({
       next: ({ data }) => {
         this.property = data.data.property;
-        console.log(data.data.property.images);
+
         this.images = data.data.property.images;
       },
     });

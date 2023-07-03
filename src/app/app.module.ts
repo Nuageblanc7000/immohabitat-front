@@ -37,6 +37,9 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormEmailComponent } from './page/profil/components/form-email/form-email.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MyFavorisComponent } from './page/my-favoris/my-favorites.component';
+import { ImageFallbackDirective } from './directives/imgFail';
+import { OutsideClickDirective } from './directives/outsideClick';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormProfilComponent,
     InfoComponent,
     FormEmailComponent,
+    MyFavorisComponent,
+    ImageFallbackDirective,
+    OutsideClickDirective,
   ],
   imports: [
     BrowserModule,

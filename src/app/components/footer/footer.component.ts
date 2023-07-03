@@ -15,7 +15,7 @@ export class FooterComponent {
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Vérifie si la route actuelle correspond à la page spécifique
-        console.log(event.url);
+
         if (event.url === '/signup' || event.url === '/profil') {
           this.hideComponentOnPage = false;
         } else {

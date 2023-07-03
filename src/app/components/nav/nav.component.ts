@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable, ReplaySubject, first } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { NaviService } from 'src/app/services/navi.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,14 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-  @Output() isOpen: EventEmitter<boolean> = new EventEmitter();
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private _naviService: NaviService
+  ) {}
   isAuth$: Observable<boolean | null> = this.authService.isAuth$.asObservable();
-  isOpened: boolean = false;
   isOpenedHabitat: boolean = false;
-  handleIsOpen(open: boolean) {
-    this.isOpened = open;
-    this.isOpen.emit(open);
+  handleIsOpen() {
+    this._naviService.isOpened.next(!this._naviService.isOpened.value);
   }
   logout() {
     this.authService.isAuth$.next(false);
@@ -23,10 +24,15 @@ export class NavComponent {
     this.isOpenedHabitat = false;
   }
 
+  ngOnInit(): void {}
+
   openSignin() {
     this.authService.openSignin$.next(true);
   }
   openMyHabitat() {
     this.isOpenedHabitat = !this.isOpenedHabitat;
+  }
+  closeHabitatMenu() {
+    if (this.isOpenedHabitat) this.isOpenedHabitat = false;
   }
 }

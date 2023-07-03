@@ -6,7 +6,7 @@
       </a>
     </picture>
 
-    <app-nav (isOpen)="isOpen($event)"></app-nav>
+    <app-nav></app-nav>
   </div>
 </header>
-<app-menu-phone (isOpen)="(isOpened)" *ngIf="isOpened"></app-menu-phone>
+<app-menu-phone *ngIf="isOpened"></app-menu-phone>

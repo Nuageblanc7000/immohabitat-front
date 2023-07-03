@@ -41,7 +41,6 @@ export class AuthService extends globalService {
       .pipe(
         tap((data: any) => {
           if (data) {
-            console.log(data.data.user, 'ici--------> dans signin');
             this.userSubject.next(data.data.user);
             this.isAuth$.next(true);
             this.openSignin$.next(false);
@@ -67,7 +66,6 @@ export class AuthService extends globalService {
       })
       .pipe(
         tap((x) => {
-          console.log(x, 'logout');
           this.userSubject.next(null);
           this.isAuth$.next(false);
         })

@@ -17,9 +17,10 @@ export const IsAuthGuard: CanActivateFn = () => {
     take(1),
     tap((p: boolean) => {
       if (p) {
-        console.log(p);
+        console.log(p, 'p ??');
         return false;
       } else {
+        console.log('prob ici ?');
         _router.navigate(['/']);
         _authService.openSignin$.next(true);
         return false;

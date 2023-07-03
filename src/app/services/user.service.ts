@@ -27,8 +27,6 @@ export class UserService extends globalService {
     });
   }
   updatePassword(updatePassword: IupdatePassword) {
-    console.log(updatePassword);
-
     return this._http.patch(
       `${this.URL_API}users/password-modify`,
       updatePassword,

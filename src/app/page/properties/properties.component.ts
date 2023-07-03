@@ -31,8 +31,7 @@ export class PropertiesComponent implements OnInit {
     private _cityService: CityService,
     private _activateRoute: ActivatedRoute,
     private _fb: FormBuilder,
-    private _router: Router,
-    private _serializer: UrlSerializer
+    private _router: Router
   ) {}
   properties: Iproperty[] = [];
   citiesSearch: Icity[] = [];
