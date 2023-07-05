@@ -40,6 +40,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MyFavorisComponent } from './page/my-favoris/my-favorites.component';
 import { ImageFallbackDirective } from './directives/imgFail';
 import { OutsideClickDirective } from './directives/outsideClick';
+import { ImmostateComponent } from './page/immostate/immostate.component';
+import { StepsModule } from 'primeng/steps';
+import { TypeStateComponent } from './page/immostate/components/type-state/type-state.component';
+import { AdressStateComponent } from './page/immostate/components/adress-state/adress-state.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -66,6 +73,9 @@ import { OutsideClickDirective } from './directives/outsideClick';
     MyFavorisComponent,
     ImageFallbackDirective,
     OutsideClickDirective,
+    ImmostateComponent,
+    TypeStateComponent,
+    AdressStateComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +95,10 @@ import { OutsideClickDirective } from './directives/outsideClick';
     InputTextModule,
     ToastModule,
     ConfirmDialogModule,
+    StepsModule,
+    InputTextareaModule,
+    KeyFilterModule,
+    SelectButtonModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],

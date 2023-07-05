@@ -1,0 +1,37 @@
+<h2 class="title_step">Adresse du bien</h2>
+<form [formGroup]="step" (ngSubmit)="stepSubmit()">
+  <p-autoComplete
+    formControlName="street"
+    [(ngModel)]="selected"
+    [suggestions]="filteredStreet"
+    class="search_input custom-autocomplete"
+    placeholder="Entrer votre Adresse"
+    (onSelect)="onAutocompleteClick()"
+  >
+  </p-autoComplete>
+  <div class="input_immo_flex_col flex_grow lm">
+    <label htmlFor="username">Rue</label>
+    <input pInputText id="username" aria-describedby="username-help" />
+    <small id="username-help"></small>
+  </div>
+  <div class="input_immo_flex_col_db_input">
+    <div class="input_immo_flex_col flex_grow rm">
+      <label htmlFor="username">ville</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+      <small id="username-help"></small>
+    </div>
+    <div class="input_immo_flex_col flex_grow lm">
+      <label htmlFor="username">Code postal</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+      <small id="username-help"></small>
+    </div>
+    <div class="input_immo_flex_col lm">
+      <label htmlFor="username">Numéro de porte</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+      <small id="username-help"></small>
+    </div>
+  </div>
+  <div class="container_action_next">
+    <button pButton pRipple label="Suivant" class="p-button-success"></button>
+  </div>
+</form>

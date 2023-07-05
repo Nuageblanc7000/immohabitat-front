@@ -1,0 +1,13 @@
+<section class="container immo_container_c_u">
+  <p-toast></p-toast>
+  <p-steps
+    class="stepper_create_update"
+    [model]="items"
+    [readonly]="false"
+    [activeIndex]="activeIndex"
+    (activeIndexChange)="onActiveIndexChange($event)"
+  ></p-steps>
+  <div class="container_form_step">
+    <router-outlet></router-outlet>
+  </div>
+</section>

@@ -88,7 +88,7 @@
             Gérer mon profil
           </a>
         </li>
-        <li>
+        <li (click)="linkclickClose()">
           <a [routerLink]="['/routePath']">
             <span class="svg_sub_menu"
               ><svg
@@ -125,8 +125,8 @@
             Mes biens en ligne
           </a>
         </li>
-        <li>
-          <a [routerLink]="['/routePath']">
+        <li (click)="linkclickClose()">
+          <a [routerLink]="['/favorites-list']">
             <span class="svg_sub_menu">
               <svg
                 id="Mode_Isolation"

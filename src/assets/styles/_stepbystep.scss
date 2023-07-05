@@ -1,0 +1,98 @@
+.title_step {
+  margin: 1rem 0;
+}
+.flex_grow {
+  flex-grow: 1;
+}
+.input_immo_flex_col_db_input {
+  display: flex;
+}
+.input_immo_flex_col {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  label {
+    padding: 0.2rem 0;
+  }
+}
+
+.lm {
+  margin-left: 0.5rem;
+}
+
+.rm {
+  margin-right: 0.5rem;
+}
+
+.stepper_create_update {
+  max-width: 200px;
+  width: 100%;
+  margin-right: 20px;
+  border-right: 1px solid green;
+  .p-steps.p-component ul {
+    flex-direction: column !important;
+    li {
+      margin: 1rem 0;
+      a {
+        background: transparent !important;
+      }
+    }
+  }
+}
+.container_action_next {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: flex-end;
+}
+
+.input_immo_drop {
+  display: flex;
+  p-dropdown {
+    width: 100% !important;
+    .p-dropdown {
+      width: 100% !important;
+    }
+  }
+}
+
+.container_type_s_r {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  .immo_cube_s {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.2rem;
+    align-items: center;
+    cursor: pointer;
+    max-width: 150px;
+    margin: 0 0.5rem;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.16);
+    height: 100px;
+    h4 {
+      color: #22c55e;
+      margin: 0.2rem 0;
+    }
+    svg {
+      max-width: 80px;
+      max-height: 80px;
+    }
+  }
+}
+.rent_immo_price {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.isSelected {
+  background-color: #22c55e;
+  h4 {
+    color: white !important;
+  }
+  svg {
+    path {
+      fill: white;
+    }
+  }
+}

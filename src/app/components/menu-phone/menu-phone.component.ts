@@ -19,6 +19,7 @@ export class MenuPhoneComponent {
     this._naviService.isOpened.next(false);
   }
   logout() {
+    this._naviService.isOpened.next(false);
     this._authService.isAuth$.next(false);
     this._authService.logout().subscribe();
   }

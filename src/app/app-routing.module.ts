@@ -15,6 +15,9 @@ import { FormProfilComponent } from './page/profil/components/form-profil/form-p
 import { InfoComponent } from './page/profil/components/info/info.component';
 import { FormEmailComponent } from './page/profil/components/form-email/form-email.component';
 import { MyFavorisComponent } from './page/my-favoris/my-favorites.component';
+import { ImmostateComponent } from './page/immostate/immostate.component';
+import { TypeStateComponent } from './page/immostate/components/type-state/type-state.component';
+import { AdressStateComponent } from './page/immostate/components/adress-state/adress-state.component';
 
 const routes: Routes = [
   {
@@ -31,6 +34,28 @@ const routes: Routes = [
     path: 'signup',
     component: SignupComponent,
     canActivate: [dataUserGuard],
+  },
+  {
+    path: 'create-immo',
+    component: ImmostateComponent,
+    canActivate: [dataUserGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'adress-state',
+      },
+
+      {
+        path: 'adress-state',
+        component: AdressStateComponent,
+      },
+
+      {
+        path: 'type-state',
+        component: TypeStateComponent,
+      },
+    ],
   },
   {
     path: 'profil',
@@ -60,6 +85,7 @@ const routes: Routes = [
       },
     ],
   },
+
   {
     path: 'favorites-list',
     component: MyFavorisComponent,
