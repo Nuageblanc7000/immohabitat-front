@@ -1,0 +1,108 @@
+<h2 class="title_step">Information sur l'intérieur du bien</h2>
+<form [formGroup]="step" (ngSubmit)="stepSubmit()">
+  <div class="input_immo_flex_col flex_grow lm">
+    <label htmlFor="room">Nombres de pièces</label>
+    <input
+      pInputText
+      id="room"
+      aria-describedby="room-help"
+      formControlName="room"
+    />
+    <small id="room-help"></small>
+  </div>
+  <div class="input_immo_area input_immo_flex_col">
+    <label htmlFor="floor">Nombres d'étages</label>
+    <input
+      pInputText
+      id="floor"
+      aria-describedby="floor-help"
+      formControlName="floor"
+    />
+    <small id="floor-help"></small>
+  </div>
+
+  <div class="input_immo_area input_immo_flex_col">
+    <label htmlFor="bedrooms">Nombres de chambres</label>
+    <input
+      pInputText
+      id="bedrooms"
+      aria-describedby="bedrooms-help"
+      formControlName="bedrooms"
+    />
+    <small id="bedrooms-help"></small>
+  </div>
+  <div class="input_immo_area input_immo_flex_col">
+    <label htmlFor="bathrooms">Nombres de salle de bains</label>
+    <input
+      pInputText
+      id="bathrooms"
+      aria-describedby="bathrooms-help"
+      formControlName="bathrooms"
+    />
+    <small id="bathrooms-help"></small>
+  </div>
+  <div class="input_immo_area input_immo_flex_col">
+    <label htmlFor="insideSurface"
+      >Surface Habitable <span>m<sup>2</sup></span>
+    </label>
+
+    <input
+      pInputText
+      pKeyFilter="num"
+      id="insideSurface"
+      aria-describedby="insideSurface-help"
+      formControlName="insideSurface"
+    />
+
+    <small id="bathrooms-help"></small>
+  </div>
+  <div class="input_immo_area input_immo_flex_col">
+    <div class="input_immo_drop">
+      <label htmlFor="kitchentype">Type de cuisine</label>
+      <p-dropdown
+        [options]="kitchenSelect"
+        [(ngModel)]="selectedItem"
+        placeholder="Choisissez votre type de cuisine"
+        [virtualScroll]="true"
+        formControlName="kitchenType"
+        [virtualScrollItemSize]="5"
+      ></p-dropdown>
+      <small id="kitchentype-help"></small>
+    </div>
+  </div>
+
+  <div class="immo_boolean_container">
+    <div class="immo_separator_boolean rm">
+      <p-checkbox
+        formControlName="livingRoom"
+        class="rm"
+        [binary]="true"
+        inputId="ny1"
+      ></p-checkbox>
+      <label for="ny1">Salon</label>
+    </div>
+    <div class="immo_separator_boolean lm">
+      <p-checkbox
+        formControlName="diningRoom"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">salle à manger</label>
+    </div>
+
+    <div class="immo_separator_boolean lm">
+      <p-checkbox
+        formControlName="balcony"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">Balcon</label>
+    </div>
+  </div>
+
+  <div class="container_action_next">
+    <button pButton pRipple label="Suivant" class="p-button-success"></button>
+  </div>
+</form>

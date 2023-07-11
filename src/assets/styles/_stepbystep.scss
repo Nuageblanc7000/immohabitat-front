@@ -47,12 +47,17 @@
 
 .input_immo_drop {
   display: flex;
+  flex-direction: column;
   p-dropdown {
     width: 100% !important;
     .p-dropdown {
       width: 100% !important;
     }
   }
+}
+
+.input_group_immo_flex_group {
+  display: flex;
 }
 
 .container_type_s_r {
@@ -95,4 +100,20 @@
       fill: white;
     }
   }
+}
+.immo_boolean_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  .immo_separator_boolean {
+    margin: 0.5rem 0;
+  }
+}
+p-calendar {
+  span {
+    width: 100%;
+  }
+}
+
+.immo_title_option {
+  margin: 1rem 0;
 }

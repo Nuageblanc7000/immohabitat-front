@@ -47,7 +47,12 @@ import { AdressStateComponent } from './page/immostate/components/adress-state/a
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { SelectButtonModule } from 'primeng/selectbutton';
-
+import { ExteriorStateComponent } from './page/immostate/components/exterior-state/exterior-state.component';
+import { InteriorStateComponent } from './page/immostate/components/interior-state/interior-state.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FileUploadModule } from 'primeng/fileupload';
+import { PictureStateComponent } from './page/immostate/components/picture-state/picture-state.component';
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +81,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     ImmostateComponent,
     TypeStateComponent,
     AdressStateComponent,
+    InteriorStateComponent,
+    ExteriorStateComponent,
+    PictureStateComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +107,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     InputTextareaModule,
     KeyFilterModule,
     SelectButtonModule,
+    CheckboxModule,
+    FileUploadModule,
+    CalendarModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],

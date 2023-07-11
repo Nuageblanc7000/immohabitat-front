@@ -18,6 +18,9 @@ import { MyFavorisComponent } from './page/my-favoris/my-favorites.component';
 import { ImmostateComponent } from './page/immostate/immostate.component';
 import { TypeStateComponent } from './page/immostate/components/type-state/type-state.component';
 import { AdressStateComponent } from './page/immostate/components/adress-state/adress-state.component';
+import { InteriorStateComponent } from './page/immostate/components/interior-state/interior-state.component';
+import { ExteriorStateComponent } from './page/immostate/components/exterior-state/exterior-state.component';
+import { PictureStateComponent } from './page/immostate/components/picture-state/picture-state.component';
 
 const routes: Routes = [
   {
@@ -54,6 +57,18 @@ const routes: Routes = [
       {
         path: 'type-state',
         component: TypeStateComponent,
+      },
+      {
+        path: 'interior-state',
+        component: InteriorStateComponent,
+      },
+      {
+        path: 'exterior-state',
+        component: ExteriorStateComponent,
+      },
+      {
+        path: 'picture-state',
+        component: PictureStateComponent,
       },
     ],
   },

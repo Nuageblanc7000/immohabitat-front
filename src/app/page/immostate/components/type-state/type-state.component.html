@@ -80,13 +80,7 @@
         </g>
       </svg>
 
-      <input
-        type="radio"
-        formControlName="selection"
-        value="sell"
-        [checked]="isSell"
-        hidden
-      />
+      <input type="radio" formControlName="isSell" hidden [checked]="isSell" />
     </div>
     <div
       class="immo_cube_s"
@@ -168,16 +162,18 @@
           </g>
         </g>
       </svg>
-      <input
-        type="radio"
-        formControlName="selection"
-        value="rent"
-        hidden
-        [checked]="isRent"
-      />
+      <input type="radio" formControlName="isRent" hidden [checked]="isRent" />
     </div>
   </div>
-
+  <div class="input_immo_flex_col flex_grow lm">
+    <label htmlFor="title">Date de construction</label>
+    <p-calendar
+      [maxDate]="maxDate"
+      formControlName="yearBuilt"
+      [(ngModel)]="date"
+      [showIcon]="true"
+    ></p-calendar>
+  </div>
   <div class="input_immo_drop">
     <p-dropdown
       [options]="(types$ | async) ?? []"

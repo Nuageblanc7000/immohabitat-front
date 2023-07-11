@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   newProperties: Iproperty[] = [];
   responsiveOptions: any[] = [];
   private timeout: any = undefined;
+  isSell: boolean = false;
+  isRent: boolean = false;
   constructor(
     private _propertyService: PropertyService,
     private _cityService: CityService,
@@ -54,6 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       minPrice: [''],
       maxPrice: [''],
       type: [''],
+      isSell: [this.isSell],
+      isRent: [this.isRent],
     });
     this.isLoading = true;
     this._propertyService.getAllNewProperties().subscribe({
@@ -85,14 +89,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSearchSubmit() {
     const params = this.searchForm.value;
+    console.log(params);
     let paramsValid: Record<string, any> = {};
     for (const key in params) {
       if (params[key]) {
         paramsValid[key] = params[key];
       }
     }
+    console.log(paramsValid);
     this._router.navigate(['/properties'], {
       queryParams: { ...paramsValid },
     });
+  }
+
+  onClickSell() {
+    this.isSell = true;
+    this.isRent = false;
+    this.searchForm?.get('isSell')?.setValue(this.isSell);
+  }
+
+  onClickRent() {
+    this.isSell = false;
+    this.isRent = true;
+    this.searchForm?.get('isRent')?.setValue(this.isRent);
   }
 }

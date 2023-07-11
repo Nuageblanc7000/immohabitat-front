@@ -1,34 +1,57 @@
 <h2 class="title_step">Adresse du bien</h2>
 <form [formGroup]="step" (ngSubmit)="stepSubmit()">
-  <p-autoComplete
-    formControlName="street"
-    [(ngModel)]="selected"
+  <!-- <p-autoComplete
     [suggestions]="filteredStreet"
     class="search_input custom-autocomplete"
     placeholder="Entrer votre Adresse"
-    (onSelect)="onAutocompleteClick()"
   >
-  </p-autoComplete>
+  </p-autoComplete> -->
   <div class="input_immo_flex_col flex_grow lm">
     <label htmlFor="username">Rue</label>
-    <input pInputText id="username" aria-describedby="username-help" />
+    <input
+      pInputText
+      id="username"
+      aria-describedby="username-help"
+      formControlName="street"
+    />
     <small id="username-help"></small>
   </div>
+
   <div class="input_immo_flex_col_db_input">
-    <div class="input_immo_flex_col flex_grow rm">
-      <label htmlFor="username">ville</label>
-      <input pInputText id="username" aria-describedby="username-help" />
-      <small id="username-help"></small>
-    </div>
-    <div class="input_immo_flex_col flex_grow lm">
-      <label htmlFor="username">Code postal</label>
-      <input pInputText id="username" aria-describedby="username-help" />
-      <small id="username-help"></small>
+    <div class="flex_grow input_group_immo_flex_group rm" formGroupName="city">
+      <div class="input_immo_flex_col flex_grow">
+        <label htmlFor="localite">ville</label>
+        <p-autoComplete
+          class="search_input custom-autocomplete"
+          id="localite"
+          aria-describedby="localite-help"
+          [(ngModel)]="selected"
+          [suggestions]="filteredCities"
+          formControlName="localite"
+          placeholder="Entrer la ville de votre choix"
+        ></p-autoComplete>
+        <small id="localite-help"></small>
+      </div>
+      <div class="input_immo_flex_col lm">
+        <label htmlFor="code">Code postal</label>
+        <input
+          pInputText
+          id="code"
+          aria-describedby="code-help"
+          formControlName="code"
+        />
+        <small id="code-help"></small>
+      </div>
     </div>
     <div class="input_immo_flex_col lm">
-      <label htmlFor="username">Numéro de porte</label>
-      <input pInputText id="username" aria-describedby="username-help" />
-      <small id="username-help"></small>
+      <label htmlFor="doornumber">Numéro de porte</label>
+      <input
+        pInputText
+        id="doornumber"
+        aria-describedby="doornumber-help"
+        formControlName="ndoor"
+      />
+      <small id="doornumber-help"></small>
     </div>
   </div>
   <div class="container_action_next">

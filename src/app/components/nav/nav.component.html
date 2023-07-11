@@ -1,6 +1,6 @@
 <nav class="navigation nav_desktop">
   <ul class="">
-    <li><a href="">Publier une annonce</a></li>
+    <li><a [routerLink]="['/create-immo']">Publier une annonce</a></li>
 
     <!-- Utilisez la variable 'auth' ici -->
     <ng-container *ngIf="!(isAuth$ | async)">

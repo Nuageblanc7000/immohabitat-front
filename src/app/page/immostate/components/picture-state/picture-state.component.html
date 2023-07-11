@@ -1,0 +1,10 @@
+<h2 class="title_step">Photo du bien</h2>
+<h5>Choissisez jusqu'à 8 photos pour présenter votre bien</h5>
+<form [formGroup]="step" (ngSubmit)="stepSubmit()">
+  <div *ngFor="let fil of files.controls; let i = index" [formGroupName]="i">
+    <p>file</p>
+    <input type="file" />
+  </div>
+
+  <button (click)="addFile()">AJouter une images</button>
+</form>

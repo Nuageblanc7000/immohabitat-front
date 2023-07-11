@@ -1,0 +1,89 @@
+<h2 class="title_step">Information sur l'extérieur du bien</h2>
+<form [formGroup]="step" (ngSubmit)="stepSubmit()">
+  <div class="input_immo_area input_immo_flex_col">
+    <label htmlFor="insideSurface"
+      >Surface extérieur<span class="lm">m<sup>2</sup></span>
+    </label>
+
+    <input
+      pInputText
+      pKeyFilter="num"
+      id="exteriorSurface"
+      aria-describedby="exteriorSurface-help"
+      formControlName="exteriorSurface"
+    />
+
+    <small id="exteriorSurface-help"></small>
+  </div>
+
+  <h4 class="immo_title_option">Option extérieur</h4>
+  <div class="immo_boolean_container">
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="garden"
+        class="rm"
+        [binary]="true"
+        inputId="ny1"
+      ></p-checkbox>
+      <label for="ny1">Jardin</label>
+    </div>
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="pool"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">Piscine</label>
+    </div>
+
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="terrace"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">Terrasse</label>
+    </div>
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="garage"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">garage</label>
+    </div>
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="parking"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">parking</label>
+    </div>
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="courtyard"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">cour</label>
+    </div>
+    <div class="immo_separator_boolean">
+      <p-checkbox
+        formControlName="commonOutdoorSpaces"
+        inputId="ny2"
+        [binary]="true"
+        class="rm"
+      ></p-checkbox>
+      <label for="ny2">espaces extérieurs communs</label>
+    </div>
+  </div>
+  <div class="container_action_next">
+    <button pButton pRipple label="Suivant" class="p-button-success"></button>
+  </div>
+</form>

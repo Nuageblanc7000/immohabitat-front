@@ -190,7 +190,7 @@
     </ng-template>
 
     <ul *ngIf="!(isAuth | async); else isConnectedUser" class="">
-      <li><a href="">Publier une annonce</a></li>
+      <li><a [routerLink]="['/create-immo']">Publier une annonce</a></li>
       <li><a href="">Inscription / Se connecter </a></li>
     </ul>
   </nav>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Itype } from 'src/app/interfaces/Itype.interface';
 
 import { GeoService } from 'src/app/services/geo.service';
+import { StepService } from 'src/app/services/step.service';
 import { TypeService } from 'src/app/services/type.service';
 
 @Component({
@@ -20,45 +21,48 @@ export class TypeStateComponent implements OnInit {
   code: string = '';
   isSell: boolean = false;
   isRent: boolean = false;
+  date: Date | undefined;
+  maxDate: Date = new Date();
   constructor(
     private _fb: FormBuilder,
     private _geoService: GeoService,
-    private _typeService: TypeService
+    private _typeService: TypeService,
+    private _stepService: StepService
   ) {}
 
   ngOnInit(): void {
     this.step = this._fb.group({
       type: [''],
-      selection: [''],
+      isSell: [this.isSell],
+      isRent: [this.isRent],
       title: [''],
       description: [''],
-      price: [+''],
+      price: [''],
+      yearBuilt: [null],
     });
-  }
-  onAutocompleteClick() {
-    if (this.step) {
-      this.step.get('street')?.value;
-      const selectedValue = this.step.get('street')?.value;
-      const splitData = selectedValue.split(',');
-      this.selected = splitData[0]?.trim();
-
-      this.code = splitData[1]?.trim();
-    }
   }
 
   onClickSell() {
     this.isSell = true;
     this.isRent = false;
-    this.step?.get('selection')?.setValue('sell');
+    this.step?.get('isRent')?.setValue(false);
+    this.step?.get('isSell')?.setValue(this.isSell);
   }
 
   onClickRent() {
     this.isSell = false;
     this.isRent = true;
-    this.step?.get('selection')?.setValue('rent');
+    this.step?.get('isSell')?.setValue(false);
+    this.step?.get('isRent')?.setValue(this.isRent);
   }
 
   stepSubmit() {
-    console.log(this.step.value);
+    if (this.step.valid) {
+      this.step?.get('price')?.setValue(+this.step?.get('price')?.value);
+      console.log(this.step.value);
+      this._stepService.stepTwo(this.step.value).subscribe({
+        next: (v) => console.log(v),
+      });
+    }
   }
 }
