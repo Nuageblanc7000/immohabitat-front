@@ -1,10 +1,42 @@
-<h2 class="title_step">Photo du bien</h2>
-<h5>Choissisez jusqu'à 8 photos pour présenter votre bien</h5>
+<div class="immo_file_header">
+  <h2 class="title_step">Photo du bien</h2>
+  <div class="_immo_counter_file">{{ counterFile }}/<span>8</span></div>
+</div>
+<!-- 
+<h5>Choisissez jusqu'à 8 photos pour présenter votre bien</h5>
 <form [formGroup]="step" (ngSubmit)="stepSubmit()">
-  <div *ngFor="let fil of files.controls; let i = index" [formGroupName]="i">
-    <p>file</p>
-    <input type="file" />
-  </div>
+  <div formArrayName="files">
+    <div *ngFor="let file of files.controls; let i = index" [formGroupName]="i">
+      <button (click)="deleteFile(i)">Supprimer le fichier</button>
+      <p>File</p>
+      <input type="file" formControlName="file" />
+    </div>
+  </div> -->
 
-  <button (click)="addFile()">AJouter une images</button>
+<!-- <button class="immo_step_button_file_add" (click)="addFile()">
+    <img
+      src="../../../assets/images/screen.svg"
+      alt="appareil photo avec logo immohabitat"
+    />
+    <span>Ajouter une photo</span>
+  </button> -->
+<form [formGroup]="step" (ngSubmit)="stepSubmit()">
+  <p-fileUpload
+    [showUploadButton]="false"
+    chooseLabel="Ajouter une photo"
+    cancelLabel="supprimer toutes les images"
+    name="demo[]"
+    url="https://www.primefaces.org/cdn/api/upload.php"
+    [multiple]="true"
+    accept="image/*"
+    [files]="uploadedFiles"
+    [maxFileSize]="fileSize"
+    (onSelect)="onFileSelect($event)"
+    [customUpload]="true"
+    (onRemove)="removeFile($event)"
+    (onClear)="removeAllFiles()"
+  >
+    <ng-template pfileTemplate="content"> </ng-template>
+  </p-fileUpload>
+  <button type="submit">suivant</button>
 </form>

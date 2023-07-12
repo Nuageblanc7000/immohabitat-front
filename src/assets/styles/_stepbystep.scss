@@ -58,6 +58,9 @@
 
 .input_group_immo_flex_group {
   display: flex;
+
+  p-autoComplete {
+  }
 }
 
 .container_type_s_r {
@@ -116,4 +119,43 @@ p-calendar {
 
 .immo_title_option {
   margin: 1rem 0;
+}
+.immo_file_header {
+  display: flex;
+  align-items: center;
+  ._immo_counter_file {
+    height: 50px;
+    width: 50px;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: solid 4px #22c55e;
+    font-weight: bold;
+  }
+}
+
+.immo_step_button_file_add {
+  min-width: 100px;
+  max-width: min-content;
+  width: 100%;
+  min-height: 100px;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 5px;
+  border: #22c55e 8px inset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 50px;
+  }
+  span {
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
 }

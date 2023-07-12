@@ -8,7 +8,7 @@ import {
   IstepThree,
   IstepTwo,
 } from '../interfaces/IStep.interface';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,8 @@ export class StepService extends globalService {
   constructor(private _http: HttpClient) {
     super();
   }
+
+  stateStep: BehaviorSubject<any> = new BehaviorSubject({});
 
   stepOne(stepOne: IstepOne): Observable<any> {
     return this._http.post(`${this.URL_API}properties/step1`, stepOne, {

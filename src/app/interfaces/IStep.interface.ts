@@ -1,17 +1,16 @@
 import { Ilocation } from './Ilocation.interface';
 
 export interface IstepOne {
-  // type: TypeInPropertyDto;
+  location: Ilocation;
+}
+
+export interface IstepTwo {
   title: string;
   description: string;
   price: number;
   isSell: boolean;
   isRent: boolean;
   yearBuilt?: Date;
-}
-
-export interface IstepTwo {
-  location: Ilocation;
 }
 
 export interface IstepTwo {

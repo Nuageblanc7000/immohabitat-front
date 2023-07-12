@@ -1,6 +1,6 @@
 import { Icity } from './ICity.interface';
 
-export interface Iproperty {
+export interface IStateStep {
   id: number;
   title: string;
   description: string;
@@ -27,10 +27,12 @@ export interface Iproperty {
   outsideSurface: number;
   commonOutdoorSpaces: boolean;
   location: location;
-  images: images[];
+  images: File[];
   type: type;
 }
-
+export interface Iimages {
+  file: File;
+}
 interface location {
   id: number;
   street: string;
@@ -47,4 +49,8 @@ interface type {
   id: number;
   title: string;
   description: string;
+}
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
 }
