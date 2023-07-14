@@ -68,6 +68,7 @@ const routes: Routes = [
       },
       {
         path: 'picture-state',
+        canActivate: [dataUserGuard],
         component: PictureStateComponent,
       },
     ],

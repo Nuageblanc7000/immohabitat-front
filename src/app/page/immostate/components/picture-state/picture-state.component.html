@@ -28,15 +28,33 @@
     name="demo[]"
     url="https://www.primefaces.org/cdn/api/upload.php"
     [multiple]="true"
-    accept="image/*"
+    accept=".jpg,.jpeg,.png"
     [files]="uploadedFiles"
     [maxFileSize]="fileSize"
     (onSelect)="onFileSelect($event)"
     [customUpload]="true"
     (onRemove)="removeFile($event)"
     (onClear)="removeAllFiles()"
+    dragHighlight="false"
+    max="4"
   >
-    <ng-template pfileTemplate="content"> </ng-template>
+    <ng-template #fileTemplate let-file pTemplate="file">
+      <div class="file_container_action">
+        <img
+          class="flex_grow"
+          [src]="file.objectURL.changingThisBreaksApplicationSecurity"
+          width="400px"
+        />
+        <button
+          type="button"
+          pbutton=""
+          (click)="removeFile(file)"
+          class="p-element p-button-icon-only p-button p-component"
+        >
+          x
+        </button>
+      </div>
+    </ng-template>
   </p-fileUpload>
   <button type="submit">suivant</button>
 </form>

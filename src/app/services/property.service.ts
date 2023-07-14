@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Iproperty } from '../interfaces/Iproperty.interface';
 import { globalService } from './global.service';
 import { Icity } from '../interfaces/ICity.interface';
+import { IStateStep } from '../interfaces/IstateStep.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,17 @@ export class PropertyService extends globalService {
 
   //after
   update() {}
-  create() {}
+  create(data: IStateStep) {
+    const { images, ...rest } = data;
+    const jsonData = JSON.stringify(rest);
+    const formData = new FormData();
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images', images[i]);
+    }
+    formData.append('dataJson', jsonData);
+    return this._Http.post(`${this.URL_API}properties`, formData, {
+      withCredentials: true,
+    });
+  }
   softDelete() {}
 }

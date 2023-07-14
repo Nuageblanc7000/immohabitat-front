@@ -10,11 +10,13 @@ export const dataUserGuard: CanActivateFn = () => {
     take(1),
     switchMap((user: IUser | null) => {
       if (user) {
+        console.log(' user', user);
         return of(true);
       } else {
         return authService.fetchCurrentUser().pipe(
           tap((x: any) => {
             if (x.data === null) {
+              console.log('pas de user');
               authService.isAuth$.next(false);
             } else {
               authService.userSubject.next(x.data.user);

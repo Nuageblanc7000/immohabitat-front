@@ -1,14 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {
-  Observable,
-  Subscription,
-  debounce,
-  filter,
-  switchMap,
-  tap,
-  timer,
-} from 'rxjs';
+import { Subscription, debounce, filter, switchMap, tap, timer } from 'rxjs';
 import { Icity } from 'src/app/interfaces/ICity.interface';
 import { IStateStep } from 'src/app/interfaces/IstateStep.interface';
 import { CityService } from 'src/app/services/city.service';
@@ -35,10 +27,10 @@ export class AdressStateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.step = this._fb.group({
-      street: [this.stepstate?.location?.street],
-      ndoor: [this.stepstate?.location?.ndoor],
+      street: [this.stepstate?.location?.street ?? ''],
+      ndoor: [this.stepstate?.location?.ndoor] ?? '',
       city: this._fb.group({
-        localite: ['Pokemon'],
+        localite: [''],
         code: [this.stepstate?.location?.city?.code],
       }),
     });

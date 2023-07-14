@@ -14,14 +14,14 @@ export class ExteriorStateComponent {
   private stepstate: IStateStep = this._stepService.stateStep.getValue();
   ngOnInit(): void {
     this.step = this._fb.group({
-      garden: [this.stepstate?.garden],
-      pool: [this.stepstate?.pool],
-      terrace: [this.stepstate?.terrace],
-      garage: [this.stepstate?.garage],
-      parking: [this.stepstate?.parking],
-      courtyard: [this.stepstate?.courtyard],
-      commonOutdoorSpaces: [this.stepstate?.commonOutdoorSpaces],
-      outsideSurface: [this.stepstate?.outsideSurface],
+      garden: [this.stepstate?.garden ?? false],
+      pool: [this.stepstate?.pool ?? false],
+      terrace: [this.stepstate?.terrace ?? false],
+      garage: [this.stepstate?.garage] ?? false,
+      parking: [this.stepstate?.parking ?? false],
+      courtyard: [this.stepstate?.courtyard ?? false],
+      commonOutdoorSpaces: [this.stepstate?.commonOutdoorSpaces ?? false],
+      outsideSurface: [this.stepstate?.outsideSurface] ?? false,
     });
   }
 

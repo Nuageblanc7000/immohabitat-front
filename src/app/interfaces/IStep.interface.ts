@@ -40,5 +40,5 @@ export interface IstepFour {
 }
 
 export interface IstepFive {
-  location: Ilocation;
+  images: File[];
 }

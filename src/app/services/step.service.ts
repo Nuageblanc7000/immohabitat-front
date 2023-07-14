@@ -40,8 +40,13 @@ export class StepService extends globalService {
       withCredentials: true,
     });
   }
-  stepFive(stepFive: IstepFive) {
-    return this._http.post(`${this.URL_API}properties/step5`, stepFive, {
+  stepFive(step5Dto: IstepFive): Observable<any> {
+    const formData = new FormData();
+    for (let index = 0; index < step5Dto.images.length; index++) {
+      formData.append('images', step5Dto.images[index]);
+    }
+
+    return this._http.post<any>(`${this.URL_API}properties/step5`, formData, {
       withCredentials: true,
     });
   }

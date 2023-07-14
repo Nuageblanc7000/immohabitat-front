@@ -156,6 +156,34 @@ p-calendar {
   }
   span {
     font-size: 0.7rem;
+    background-color: red;
     font-weight: bold;
+  }
+}
+.p-fileupload-content {
+  .p-fileupload-files .ng-star-inserted {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 10px;
+    .file_container_action {
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      img {
+        max-width: 100%;
+        object-fit: cover;
+        max-height: 100%;
+      }
+      button {
+        position: absolute;
+        background-color: red;
+        border: none;
+        right: 0;
+
+        top: 0;
+      }
+    }
   }
 }

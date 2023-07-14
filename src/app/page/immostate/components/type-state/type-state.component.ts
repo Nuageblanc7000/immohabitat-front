@@ -34,13 +34,13 @@ export class TypeStateComponent implements OnInit {
 
   ngOnInit(): void {
     this.step = this._fb.group({
-      type: [this.stepstate?.type],
-      isSell: [this.stepstate?.isSell],
-      isRent: [this.stepstate?.isRent],
-      title: [this.stepstate?.title],
-      description: [this.stepstate?.description],
-      price: [this.stepstate?.price],
-      yearBuilt: [this.stepstate?.yearBuilt],
+      type: [this.stepstate?.type ?? ''],
+      isSell: [this.stepstate?.isSell ?? false],
+      isRent: [this.stepstate?.isRent ?? false],
+      title: [this.stepstate?.title ?? ''],
+      description: [this.stepstate?.description ?? ''],
+      price: [this.stepstate?.price ?? 0],
+      yearBuilt: [this.stepstate?.yearBuilt ?? null],
     });
   }
 
